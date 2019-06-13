@@ -12,4 +12,13 @@
     <artifactId>hound-transfers-bom</artifactId>
     <packaging>pom</packaging>
 
+    <dependencies>
+
+        <dependency>
+            <groupId>com.bytes.hound</groupId>
+            <artifactId>hound-transfers-define</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+
 </project>
