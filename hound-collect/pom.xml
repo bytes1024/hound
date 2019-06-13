@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>bytes-hound</artifactId>
+        <groupId>com.bytes.hound</groupId>
+        <version>1.0.0-Final</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>hound-collect</artifactId>
+
+
+    <properties>
+        <premain.class>com.bytes.hound.collect.agent.CollectAgent</premain.class>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>net.bytebuddy</groupId>
+            <artifactId>byte-buddy</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.bytes.hound</groupId>
+            <artifactId>hound-loader</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.bytes.hound</groupId>
+            <artifactId>hound-commons</artifactId>
+        </dependency>
+
+
+        <!--<dependency>-->
+            <!--<groupId>com.bytes.hound</groupId>-->
+            <!--<artifactId>hound-plugins-define</artifactId>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+            <!--<groupId>com.bytes.hound</groupId>-->
+            <!--<artifactId>hound-transfers-define</artifactId>-->
+        <!--</dependency>-->
+
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+        </dependency>
+
+
+        <dependency>
+            <groupId>cn.wine</groupId>
+            <artifactId>hound-plugins-bom</artifactId>
+            <version>${project.version}</version>
+            <scope>runtime</scope>
+            <type>pom</type>
+        </dependency>
+
+
+    </dependencies>
+
+
+
+    <build>
+        <finalName>monitor-agent-collect</finalName>
+        <plugins>
+
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <addMavenDescriptor>false</addMavenDescriptor>
+                    </archive>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-shade-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <shadedArtifactAttached>false</shadedArtifactAttached>
+                            <createDependencyReducedPom>false</createDependencyReducedPom>
+                            <createSourcesJar>true</createSourcesJar>
+                            <shadeSourcesContent>true</shadeSourcesContent>
+                            <transformers>
+                                <!--文件追加  com.support.monitor.agent.core.plugin.PluginDefine-->
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                                    <resource>
+                                        META-INF/services/com.bytes.hound.plugins.define.PluginDefine
+                                    </resource>
+                                </transformer>
+
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                                    <resource>
+                                        META-INF/plugins/com.bytes.hound.plugins.define.PluginDefine
+                                    </resource>
+                                </transformer>
+
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                                    <resource>
+                                        META-INF/services/com.bytes.hound.plugins.define.PluginDefine
+                                    </resource>
+                                </transformer>
+
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                                    <resource>
+                                        META-INF/plugins/com.bytes.hound.transfers.define.TransferDefine
+                                    </resource>
+                                </transformer>
+
+
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <manifestEntries>
+                                        <Premain-Class>${premain.class}</Premain-Class>
+                                    </manifestEntries>
+                                </transformer>
+                            </transformers>
+
+                            <!--
+                            由于一些包重复引用，
+                            打包后的 META-INF 目录多出了一些 *.SF 等文件，
+                            执行jar包时，
+                            可能会抛出java.lang.SecurityException:
+                            Invalid signature file digest for Manifest main attributes
+                            异常。可以通过配置下面的filters来避免问题
+                            -->
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/*.SF</exclude>
+                                        <exclude>META-INF/*.DSA</exclude>
+                                        <exclude>META-INF/*.RSA</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>
