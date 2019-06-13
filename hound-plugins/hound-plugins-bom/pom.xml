@@ -14,11 +14,7 @@
 
     <dependencies>
 
-        <dependency>
-            <groupId>com.bytes.hound</groupId>
-            <artifactId>hound-plugins-define</artifactId>
-            <version>${project.version}</version>
-        </dependency>
+
 
         <dependency>
             <groupId>com.bytes.hound</groupId>
