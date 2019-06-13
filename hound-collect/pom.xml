@@ -9,9 +9,7 @@
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-
     <artifactId>hound-collect</artifactId>
-
 
     <properties>
         <premain.class>com.bytes.hound.collect.agent.CollectAgent</premain.class>
@@ -81,15 +79,19 @@
             <artifactId>commons-collections</artifactId>
         </dependency>
 
-
         <dependency>
-            <groupId>cn.wine</groupId>
+            <groupId>com.bytes.hound</groupId>
             <artifactId>hound-plugins-bom</artifactId>
             <version>${project.version}</version>
-            <scope>runtime</scope>
-            <type>pom</type>
+
         </dependency>
 
+        <dependency>
+            <groupId>com.bytes.hound</groupId>
+            <artifactId>hound-transfers-bom</artifactId>
+            <version>${project.version}</version>
+
+        </dependency>
 
     </dependencies>
 

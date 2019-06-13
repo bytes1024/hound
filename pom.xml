@@ -87,6 +87,8 @@
         </plugins>
     </build>
 
+
+
     <distributionManagement>
         <repository>
             <id>cp-nexus-1919-releases</id>
@@ -97,8 +99,5 @@
             <url>http://nexus.1919.cn/repository/cp-snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
-
-
-
 
 </project>
