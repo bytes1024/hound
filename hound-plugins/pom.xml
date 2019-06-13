@@ -16,12 +16,15 @@
         <module>hound-plugins-define</module>
         <module>hound-plugins-tomcat</module>
         <module>hound-plugins-bom</module>
+        <module>hound-plugins-webflux</module>
+        <module>hound-plugins-okhttp</module>
     </modules>
 
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
 
 
 </project>

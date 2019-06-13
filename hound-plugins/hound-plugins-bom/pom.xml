@@ -22,6 +22,18 @@
             <version>${project.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.bytes.hound</groupId>
+            <artifactId>hound-plugins-webflux</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.bytes.hound</groupId>
+            <artifactId>hound-plugins-okhttp</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
     </dependencies>
 
 </project>

@@ -16,6 +16,7 @@
         <module>hound-plugins</module>
         <module>hound-transfers</module>
         <module>hound-commons</module>
+        <module>hound-server</module>
     </modules>
 
     <properties>

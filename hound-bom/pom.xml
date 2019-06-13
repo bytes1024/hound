@@ -11,6 +11,7 @@
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
+    <groupId>com.bytes.hound</groupId>
     <artifactId>hound-bom</artifactId>
     <packaging>pom</packaging>
 
@@ -72,6 +73,18 @@
             <dependency>
                 <groupId>com.bytes.hound</groupId>
                 <artifactId>hound-transfers-define</artifactId>
+                <version>${collect.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.bytes.hound</groupId>
+                <artifactId>hound-loader</artifactId>
+                <version>${collect.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.bytes.hound</groupId>
+                <artifactId>hound-commons</artifactId>
                 <version>${collect.version}</version>
             </dependency>
 
