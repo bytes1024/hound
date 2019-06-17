@@ -3,7 +3,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-    <groupId>com.bytes.hound</groupId>
+    <groupId>cn.bytes1024.hound</groupId>
     <artifactId>bytes-hound</artifactId>
     <version>1.0.0-Final</version>
     <packaging>pom</packaging>
@@ -29,16 +29,16 @@
         <dependencies>
 
             <dependency>
-                <groupId>com.bytes.hound</groupId>
+                <groupId>cn.bytes1024.hound</groupId>
                 <artifactId>hound-bom</artifactId>
-                <version>1.1.0.BUILD-SNAPSHOT</version>
+                <version>1.0.0.BUILD</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
         </dependencies>
 
     </dependencyManagement>
-    
+
     <build>
         <plugins>
 
@@ -64,20 +64,25 @@
                 </configuration>
             </plugin>
 
-
         </plugins>
     </build>
 
-
+    <profiles>
+        <profile>
+            <activation>bytes1024-profile</activation>
+        </profile>
+    </profiles>
 
     <distributionManagement>
+
+
         <repository>
-            <id>cp-nexus-1919-releases</id>
-            <url>http://nexus.1919.cn/repository/cp-releases/</url>
+            <id>bytes1024-profile</id>
+            <url>http://nexus.bytes1024.org/repository/maven-releases/</url>
         </repository>
         <snapshotRepository>
-            <id>cp-nexus-1919-snapshots</id>
-            <url>http://nexus.1919.cn/repository/cp-snapshots/</url>
+            <id>bytes1024-profile</id>
+            <url>http://nexus.bytes1024.org/repository/maven-snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
 

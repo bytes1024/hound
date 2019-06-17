@@ -4,14 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <parent>
-        <groupId>cn.wine</groupId>
-        <artifactId>support-dependencies-parent</artifactId>
-        <version>1.1.0.BUILD-SNAPSHOT</version>
+        <groupId>cn.bytes1024</groupId>
+        <artifactId>bytes1024-dependencies-parent</artifactId>
+        <version>1.0.0.BUILD</version>
         <relativePath/>
     </parent>
 
+
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.bytes.hound</groupId>
+    <groupId>cn.bytes1024.hound</groupId>
     <artifactId>hound-bom</artifactId>
     <packaging>pom</packaging>
 
@@ -63,27 +64,26 @@
                 <version>${alipay.tracer}</version>
             </dependency>
 
-
             <dependency>
-                <groupId>com.bytes.hound</groupId>
+                <groupId>cn.bytes1024.hound</groupId>
                 <artifactId>hound-plugins-define</artifactId>
                 <version>${collect.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.bytes.hound</groupId>
+                <groupId>cn.bytes1024.hound</groupId>
                 <artifactId>hound-transfers-define</artifactId>
                 <version>${collect.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.bytes.hound</groupId>
+                <groupId>cn.bytes1024.hound</groupId>
                 <artifactId>hound-loader</artifactId>
                 <version>${collect.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.bytes.hound</groupId>
+                <groupId>cn.bytes1024.hound</groupId>
                 <artifactId>hound-commons</artifactId>
                 <version>${collect.version}</version>
             </dependency>
@@ -183,18 +183,5 @@
 
         </dependencies>
     </dependencyManagement>
-
-
-    <distributionManagement>
-        <repository>
-            <id>cp-nexus-1919-releases</id>
-            <url>http://nexus.1919.cn/repository/cp-releases/</url>
-        </repository>
-        <snapshotRepository>
-            <id>cp-nexus-1919-snapshots</id>
-            <url>http://nexus.1919.cn/repository/cp-snapshots/</url>
-        </snapshotRepository>
-    </distributionManagement>
-
 
 </project>

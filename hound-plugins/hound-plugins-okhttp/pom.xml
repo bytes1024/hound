@@ -4,14 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>hound-plugins</artifactId>
-        <groupId>com.bytes.hound</groupId>
+        <groupId>cn.bytes1024.hound</groupId>
         <version>1.0.0-Final</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>hound-plugins-okhttp</artifactId>
-
-
 
     <dependencies>
 
@@ -26,6 +24,7 @@
             <version>3.7.0</version>
             <scope>provided</scope>
         </dependency>
+
         <dependency>
             <groupId>commons-collections</groupId>
             <artifactId>commons-collections</artifactId>

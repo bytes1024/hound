@@ -1,2 +1,0 @@
-
-plugin-webflux-onInbound = com.bytes.hound.plugins.webflux.WebFluxOnInboundNextPlugin

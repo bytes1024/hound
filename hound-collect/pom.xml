@@ -12,7 +12,7 @@
     <artifactId>hound-collect</artifactId>
 
     <properties>
-        <premain.class>com.bytes.hound.collect.agent.CollectAgent</premain.class>
+        <premain.class>cn.bytes1024.hound.collect.agent.CollectAgent</premain.class>
     </properties>
 
     <dependencies>
@@ -31,27 +31,6 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>com.bytes.hound</groupId>
-            <artifactId>hound-loader</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.bytes.hound</groupId>
-            <artifactId>hound-commons</artifactId>
-        </dependency>
-
-
-        <!--<dependency>-->
-            <!--<groupId>com.bytes.hound</groupId>-->
-            <!--<artifactId>hound-plugins-define</artifactId>-->
-        <!--</dependency>-->
-
-        <!--<dependency>-->
-            <!--<groupId>com.bytes.hound</groupId>-->
-            <!--<artifactId>hound-transfers-define</artifactId>-->
-        <!--</dependency>-->
 
 
         <dependency>
@@ -80,7 +59,28 @@
         </dependency>
 
         <dependency>
-            <groupId>com.bytes.hound</groupId>
+            <groupId>cn.bytes1024.hound</groupId>
+            <artifactId>hound-loader</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.bytes1024.hound</groupId>
+            <artifactId>hound-commons</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.bytes1024.hound</groupId>
+            <artifactId>hound-plugins-define</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.bytes1024.hound</groupId>
+            <artifactId>hound-transfers-define</artifactId>
+        </dependency>
+
+
+        <dependency>
+            <groupId>cn.bytes1024.hound</groupId>
             <artifactId>hound-plugins-bom</artifactId>
             <version>${project.version}</version>
             <scope>runtime</scope>
@@ -88,25 +88,14 @@
         </dependency>
 
         <dependency>
-            <groupId>com.bytes.hound</groupId>
+            <groupId>cn.bytes1024.hound</groupId>
             <artifactId>hound-transfers-bom</artifactId>
             <version>${project.version}</version>
             <scope>runtime</scope>
             <type>pom</type>
         </dependency>
 
-        <dependency>
-            <groupId>com.bytes.hound</groupId>
-            <artifactId>hound-plugins-define</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.bytes.hound</groupId>
-            <artifactId>hound-transfers-define</artifactId>
-        </dependency>
-
     </dependencies>
-
 
 
     <build>
@@ -140,28 +129,28 @@
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
                                     <resource>
-                                        META-INF/services/com.bytes.hound.plugins.define.PluginDefine
+                                        META-INF/services/cn.bytes1024.hound.plugins.define.PluginDefine
                                     </resource>
                                 </transformer>
 
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
                                     <resource>
-                                        META-INF/plugins/com.bytes.hound.plugins.define.PluginDefine
+                                        META-INF/plugins/cn.bytes1024.hound.plugins.define.PluginDefine
                                     </resource>
                                 </transformer>
 
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
                                     <resource>
-                                        META-INF/services/com.bytes.hound.plugins.define.PluginDefine
+                                        META-INF/services/cn.bytes1024.hound.plugins.define.PluginDefine
                                     </resource>
                                 </transformer>
 
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
                                     <resource>
-                                        META-INF/plugins/com.bytes.hound.transfers.define.TransferDefine
+                                        META-INF/plugins/cn.bytes1024.hound.transfers.define.TransferDefine
                                     </resource>
                                 </transformer>
 

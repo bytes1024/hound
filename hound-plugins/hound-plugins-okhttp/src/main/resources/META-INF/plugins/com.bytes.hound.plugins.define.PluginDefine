@@ -1,3 +1,0 @@
-plugin-okHttp-client = com.bytes.hound.plugins.okhttp.OkHttpClientPlugin
-
-plugin-okHttp-realCall = com.bytes.hound.plugins.okhttp.OkHttpRealCallPlugin
