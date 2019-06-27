@@ -13,7 +13,7 @@
 
     <properties>
         <premain.class>cn.bytes1024.hound.collect.agent.CollectAgent</premain.class>
-        <deploy.skip>false</deploy.skip>
+        <deploy.skip>true</deploy.skip>
     </properties>
 
     <dependencies>
