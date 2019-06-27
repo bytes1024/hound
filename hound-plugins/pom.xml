@@ -26,5 +26,13 @@
         <deploy.skip>false</deploy.skip>
     </properties>
 
-
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>cn.bytes1024.hound</groupId>
+                <artifactId>hound-plugins-define</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>
