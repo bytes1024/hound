@@ -14,7 +14,7 @@ public class Tomcat7xPlugin extends AbstractPluginDefine {
     @Override
     public void init(AbstractPluginDefine.PluginDefineBuilder defineBuilder) {
 
-        defineBuilder.pointName("tomcat")
+        defineBuilder.pointName("plugin-tomcat")
                 .pointClass(named("org.apache.catalina.core.StandardHostValve"))
                 .pointMethod(named("invoke")
                                 .and(takesArguments(2))
