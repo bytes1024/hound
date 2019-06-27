@@ -18,6 +18,7 @@
         <module>hound-plugins-bom</module>
         <module>hound-plugins-webflux</module>
         <module>hound-plugins-okhttp</module>
+        <module>hound-plugins-spring</module>
     </modules>
 
 
