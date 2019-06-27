@@ -19,6 +19,9 @@
         <module>hound-plugins-webflux</module>
         <module>hound-plugins-okhttp</module>
         <module>hound-plugins-spring</module>
+        <module>hound-plugins-httpclient</module>
+        <module>hound-plugins-fastjson</module>
+        <module>hound-plugins-gson</module>
     </modules>
 
 

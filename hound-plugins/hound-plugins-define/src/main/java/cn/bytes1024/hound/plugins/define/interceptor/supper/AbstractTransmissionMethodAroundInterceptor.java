@@ -7,7 +7,6 @@ import com.alipay.common.tracer.core.context.span.SofaTracerSpanContext;
 import com.alipay.common.tracer.core.span.SofaTracerSpan;
 import lombok.Getter;
 import lombok.NonNull;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
@@ -24,7 +23,6 @@ import static io.opentracing.tag.Tags.SPAN_KIND_SERVER;
  * @author 江浩
  */
 @Getter
-@Setter
 @Slf4j
 public abstract class AbstractTransmissionMethodAroundInterceptor<H> extends AbstractMethodAroundInterceptor {
 
@@ -36,6 +34,10 @@ public abstract class AbstractTransmissionMethodAroundInterceptor<H> extends Abs
 
     private RemoteTransmission<H> remoteTransmission;
 
+    public void setRemoteTransmission(RemoteTransmission<H> remoteTransmission) {
+        this.remoteTransmission = remoteTransmission;
+    }
+
     @Override
     public void before(InterceptContext interceptContext) {
         invoker(interceptContext);
@@ -43,7 +45,8 @@ public abstract class AbstractTransmissionMethodAroundInterceptor<H> extends Abs
 
 
     public void before(@NonNull H handler, @NonNull InterceptContext interceptContext) {
-        setRemoteHandle(handler);
+        //setRemoteHandle(handler);
+        this.remoteHandle = handler;
         invoker(interceptContext);
     }
 
