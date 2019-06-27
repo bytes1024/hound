@@ -5,7 +5,7 @@
     <parent>
         <artifactId>hound-plugins</artifactId>
         <groupId>cn.bytes1024.hound</groupId>
-        <version>1.0.0-Final</version>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -14,8 +14,9 @@
     <dependencies>
 
         <dependency>
-            <groupId>com.bytes.hound</groupId>
+            <groupId>cn.bytes1024.hound</groupId>
             <artifactId>hound-plugins-define</artifactId>
+            <version>${project.version}</version>
         </dependency>
 
         <dependency>

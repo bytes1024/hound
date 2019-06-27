@@ -5,7 +5,7 @@
 
     <groupId>cn.bytes1024.hound</groupId>
     <artifactId>bytes-hound</artifactId>
-    <version>1.0.0-Final</version>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modelVersion>4.0.0</modelVersion>
 
@@ -23,6 +23,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
         <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
+        <deploy.skip>true</deploy.skip>
     </properties>
 
     <dependencyManagement>
@@ -44,6 +45,15 @@
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.8.2</version>
+                <configuration>
+                    <skip>${deploy.skip}</skip>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.1.2</version>
                 <configuration>
@@ -52,7 +62,6 @@
                     </archive>
                 </configuration>
             </plugin>
-
 
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -64,26 +73,80 @@
                 </configuration>
             </plugin>
 
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.3</version>
+                <configuration>
+                    <useReleaseProfile>false</useReleaseProfile>
+                    <releaseProfiles>release</releaseProfiles>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <tagNameFormat>@{project.version}</tagNameFormat>
+                    <goals>deploy</goals>
+                </configuration>
+            </plugin>
         </plugins>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>repackage</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
     </build>
 
-    <profiles>
-        <profile>
-            <activation>bytes1024-profile</activation>
-        </profile>
-    </profiles>
 
     <distributionManagement>
-
-
         <repository>
             <id>bytes1024-profile</id>
-            <url>http://nexus.bytes1024.org/repository/maven-releases/</url>
+            <url>http://nexus.bytes1024.cn/repository/maven-releases/</url>
         </repository>
         <snapshotRepository>
             <id>bytes1024-profile</id>
-            <url>http://nexus.bytes1024.org/repository/maven-snapshots/</url>
+            <url>http://nexus.bytes1024.cn/repository/maven-snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
+
+
+    <scm>
+        <url>https://github.com/bytes1024/hound.git</url>
+        <connection>scm:git:https://github.com/bytes1024/hound.git</connection>
+        <developerConnection>scm:git:https://github.com/bytes1024/hound.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+
+    <profiles>
+        <profile>
+            <id>bytes1024-profile</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+    </profiles>
+
 
 </project>
