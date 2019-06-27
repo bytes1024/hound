@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>hound-plugins</artifactId>
-        <groupId>com.bytes.hound</groupId>
-        <version>1.0.0-Final</version>
+        <groupId>cn.bytes1024.hound</groupId>
+        <version>1.0.1-SNAPSHOT</version>
     </parent>
+
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>hound-plugins-webflux</artifactId>
 
-
     <dependencies>
+
         <dependency>
-            <groupId>com.bytes.hound</groupId>
+            <groupId>cn.bytes1024.hound</groupId>
             <artifactId>hound-plugins-define</artifactId>
+            <version>${project.version}</version>
         </dependency>
 
         <dependency>
@@ -35,12 +35,6 @@
             <groupId>io.netty</groupId>
             <artifactId>netty-codec-http</artifactId>
             <version>4.1.30.Final</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.bytes.hound</groupId>
-            <artifactId>hound-plugins-define</artifactId>
             <scope>compile</scope>
         </dependency>
 
