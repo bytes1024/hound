@@ -4,7 +4,7 @@
 
     <groupId>cn.bytes1024.hound</groupId>
     <artifactId>bytes-hound</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modelVersion>4.0.0</modelVersion>
 
@@ -31,7 +31,7 @@
             <dependency>
                 <groupId>cn.bytes1024.hound</groupId>
                 <artifactId>hound-bom</artifactId>
-                <version>1.0.0</version>
+                <version>1.0.0.BUILD</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -134,7 +134,7 @@
         <url>https://github.com/bytes1024/hound.git</url>
         <connection>scm:git:https://github.com/bytes1024/hound.git</connection>
         <developerConnection>scm:git:https://github.com/bytes1024/hound.git</developerConnection>
-        <tag>1.0.0</tag>
+        <tag>HEAD</tag>
     </scm>
 
 
