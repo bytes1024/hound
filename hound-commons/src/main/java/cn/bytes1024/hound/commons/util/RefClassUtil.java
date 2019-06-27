@@ -3,6 +3,11 @@ package cn.bytes1024.hound.commons.util;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
+/**
+ * 获取泛型类型
+ *
+ * @author 江浩
+ */
 public class RefClassUtil {
 
     public static Class getSuperClassGenricType(Class clazz, int index)
