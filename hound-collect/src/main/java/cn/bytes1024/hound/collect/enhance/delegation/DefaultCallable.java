@@ -5,7 +5,7 @@ package cn.bytes1024.hound.collect.enhance.delegation;
  *
  * @author 江浩
  */
-public interface OverrideCallable {
+public interface DefaultCallable {
     /**
      * invoker
      *
