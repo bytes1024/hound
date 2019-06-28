@@ -8,6 +8,11 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 import java.lang.reflect.Method;
 
+/**
+ * 拦截上下文信息
+ *
+ * @author 江浩
+ */
 @Data
 @Builder
 @AllArgsConstructor
@@ -22,10 +27,14 @@ public class InterceptContext implements Serializable {
     @Builder.Default
     private Object[] args = {};
 
+    /**
+     * 标识当前请求信息，如果过滤掉了 不做后续的处理
+     */
     private boolean ignored;
 
     private Object result;
 
     private Throwable throwable;
+
 
 }

@@ -53,6 +53,11 @@ public class DefaultTraceContext extends SofaTracerThreadLocalTraceContext imple
         SofaTracerSpanContext sofaTracerSpanContext = sofaTracerSpan.getSofaTracerSpanContext();
         //options setting
         //TODO 这很容易出问题
+
+//        System.out.println("----------------------------------->>>>args<<<<-----------------------------------");
+//        System.out.println(interceptContext.getArgs());
+//        System.out.println("----------------------------------->>>>args<<<<-----------------------------------");
+
         sofaTracerSpanContext.setSysBaggageItem("TARGET_CLASS", interceptContext.getTarget().getClass().getName());
         sofaTracerSpanContext.setSysBaggageItem("METHOD_CLASS", interceptContext.getMethod().getName());
         sofaTracerSpanContext.setSysBaggageItem("INVOKER_RESULT", JSONObject.toJSONString(interceptContext.getResult()));
