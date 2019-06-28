@@ -40,6 +40,18 @@
             <version>${project.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>cn.bytes1024.hound</groupId>
+            <artifactId>hound-plugins-fastjson</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.bytes1024.hound</groupId>
+            <artifactId>hound-plugins-gson</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
     </dependencies>
 
 </project>
