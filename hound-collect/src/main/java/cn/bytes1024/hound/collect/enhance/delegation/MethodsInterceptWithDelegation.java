@@ -2,6 +2,7 @@ package cn.bytes1024.hound.collect.enhance.delegation;
 
 import cn.bytes1024.hound.plugins.define.InterceptContext;
 import cn.bytes1024.hound.plugins.define.interceptor.MethodAroundInterceptor;
+import lombok.extern.slf4j.Slf4j;
 import net.bytebuddy.implementation.bind.annotation.*;
 
 import java.lang.reflect.Method;
@@ -12,6 +13,7 @@ import java.util.concurrent.Callable;
  *
  * @author 江浩
  */
+@Slf4j
 public class MethodsInterceptWithDelegation {
 
     private MethodAroundInterceptor methodAroundInterceptor;
@@ -25,7 +27,7 @@ public class MethodsInterceptWithDelegation {
             @This Object object,
             @AllArguments Object[] allArguments,
             @SuperCall Callable<?> callable,
-            @Origin Method method) throws Exception {
+            @Origin Method method) {
 
         Object result = null;
         Throwable throwable = null;
@@ -38,7 +40,6 @@ public class MethodsInterceptWithDelegation {
             methodAroundInterceptor.before(interceptContext);
             result = callable.call();
         } catch (Exception e) {
-            e.printStackTrace();
             throwable = e;
         } finally {
             interceptContext.setResult(result);

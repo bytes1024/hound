@@ -50,6 +50,15 @@ public class DefaultInterceptorFactory implements InterceptorFactory {
         }
     }
 
+    /**
+     * invoker {@link InterceptorPluginAware#defineName(String)}
+     *
+     * @param pluginName :
+     * @param aClass     :
+     * @param object     :
+     * @return : void
+     * @author 江浩
+     */
     private void invokeMethod(String pluginName, Class<?> aClass, Object object) {
 
         if (InterceptorPluginAware.class.isAssignableFrom(aClass)) {
