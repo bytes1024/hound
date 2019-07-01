@@ -5,6 +5,7 @@ package cn.bytes1024.hound.collect.enhance.delegation;
  *
  * @author 江浩
  */
+@Deprecated
 public interface DefaultCallable {
     /**
      * invoker
