@@ -22,6 +22,7 @@
         <module>hound-plugins-httpclient</module>
         <module>hound-plugins-fastjson</module>
         <module>hound-plugins-gson</module>
+        <module>hound-plugins-druid</module>
     </modules>
 
 
