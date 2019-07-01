@@ -25,7 +25,7 @@ TODO
 |mongodb|TODO
 |log4j|TODO
 |dbcp|TODO
-|druid|TODO
+|druid|1.1.10|粗
 |hikaricp|TODO
 |TODO
 ##### [文档](https://github.com/bytes1024/hound/wiki)
