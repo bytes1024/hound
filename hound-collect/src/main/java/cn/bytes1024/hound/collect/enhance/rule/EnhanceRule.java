@@ -24,10 +24,27 @@ public interface EnhanceRule {
         public static final String STATIC_METHOD = "static_method";
     }
 
-    interface EnhanceRuleCallback {
+    /**
+     * 增强规则执行设置信息
+     *
+     * @author 江浩
+     */
+    interface EnhanceRuleOption {
 
+        /**
+         * 拦截器工厂
+         *
+         * @return : cn.bytes1024.hound.collect.enhance.InterceptorFactory
+         * @author 江浩
+         */
         InterceptorFactory getInterceptorFactory();
 
+        /**
+         * 获取增强上线文环境
+         *
+         * @return : cn.bytes1024.hound.plugins.define.EnhanceContext
+         * @author 江浩
+         */
         EnhanceContext getEnhanceContext();
 
     }
@@ -36,15 +53,15 @@ public interface EnhanceRule {
     /**
      * 增强规则实现
      *
-     * @param chan                :
+     * @param chan              :
      * @param builder
-     * @param enhanceRuleCallback :
+     * @param enhanceRuleOption :
      * @return : net.bytebuddy.dynamic.DynamicType.Builder<?>
      * @author 江浩
      */
     DynamicType.Builder<?> enhance(EnhanceRuleChain chan,
                                    DynamicType.Builder<?> builder,
-                                   EnhanceRuleCallback enhanceRuleCallback);
+                                   EnhanceRuleOption enhanceRuleOption);
 
     /**
      * 过滤掉

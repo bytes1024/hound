@@ -1,7 +1,7 @@
 package cn.bytes1024.hound.collect.handler;
 
 import cn.bytes1024.hound.collect.agent.AgentOption;
-import cn.bytes1024.hound.collect.enhance.EnhanceFactory;
+import cn.bytes1024.hound.collect.enhance.EnhanceRuleChainProxy;
 import cn.bytes1024.hound.loader.ExtensionLoader;
 import cn.bytes1024.hound.plugins.define.EnhanceContext;
 import cn.bytes1024.hound.plugins.define.PluginDefine;
@@ -31,17 +31,17 @@ public class CollectAgentHandler implements Handler {
 
     private Instrumentation instrumentation;
 
-    private EnhanceFactory enhanceFactory;
+    private EnhanceRuleChainProxy enhanceRuleChainProxy;
 
     private ExtensionLoader<PluginDefine> extensionLoader = ExtensionLoader.getExtensionLoader(PluginDefine.class);
 
     @Inject
     public CollectAgentHandler(AgentBuilder agentBuilder,
                                Instrumentation instrumentation,
-                               EnhanceFactory enhanceFactory) {
+                               EnhanceRuleChainProxy enhanceRuleChainProxy) {
         this.agentBuilder = agentBuilder;
         this.instrumentation = instrumentation;
-        this.enhanceFactory = enhanceFactory;
+        this.enhanceRuleChainProxy = enhanceRuleChainProxy;
     }
 
     @Override
@@ -75,7 +75,7 @@ public class CollectAgentHandler implements Handler {
             List<EnhanceContext> enhanceContexts = pluginDefine.enhanceContexts();
             log.info("plugin name loading: {} len {}", pluginDefine.name(), CollectionUtils.isEmpty(enhanceContexts) ? 0 : enhanceContexts.size());
             this.agentBuilder.type(ElementMatchers.not(isInterface()).and(classDescription))
-                    .transform((builder, typeDescription, classLoader, module) -> enhanceFactory.enhance(builder, enhanceContexts))
+                    .transform((builder, typeDescription, classLoader, module) -> enhanceRuleChainProxy.enhance(builder, enhanceContexts))
                     //TODO
                     //.with(new AgentEnhanceLister(this.enhanceDebugFactory))
                     .installOn(this.instrumentation);
