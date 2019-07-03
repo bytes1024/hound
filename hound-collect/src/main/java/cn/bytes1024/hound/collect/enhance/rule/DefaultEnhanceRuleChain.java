@@ -30,9 +30,9 @@ public class DefaultEnhanceRuleChain implements EnhanceRuleChain {
 
 
     @Override
-    public DynamicType.Builder<?> enhance(DynamicType.Builder<?> builder, EnhanceRule.EnhanceRuleCallback enhanceRuleCallback) {
+    public DynamicType.Builder<?> enhance(DynamicType.Builder<?> builder, EnhanceRule.EnhanceRuleOption enhanceRuleOption) {
         if (index < this.enhanceRules.size()) {
-            return this.enhanceRules.get(index).enhance(chan(), builder, enhanceRuleCallback);
+            return this.enhanceRules.get(index).enhance(chan(), builder, enhanceRuleOption);
         }
         //default builder
         return builder;

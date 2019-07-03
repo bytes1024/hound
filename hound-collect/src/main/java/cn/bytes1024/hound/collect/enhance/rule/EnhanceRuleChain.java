@@ -11,9 +11,9 @@ public interface EnhanceRuleChain {
      * 增强实现
      *
      * @param builder
-     * @param enhanceRuleCallback :
+     * @param enhanceRuleOption :
      * @return : net.bytebuddy.dynamic.DynamicType.Builder<?>
      * @author 江浩
      */
-    DynamicType.Builder<?> enhance(DynamicType.Builder<?> builder, EnhanceRule.EnhanceRuleCallback enhanceRuleCallback);
+    DynamicType.Builder<?> enhance(DynamicType.Builder<?> builder, EnhanceRule.EnhanceRuleOption enhanceRuleOption);
 }

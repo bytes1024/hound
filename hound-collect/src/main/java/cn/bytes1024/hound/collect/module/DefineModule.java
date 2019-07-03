@@ -2,7 +2,7 @@ package cn.bytes1024.hound.collect.module;
 
 import cn.bytes1024.hound.collect.agent.AgentOption;
 import cn.bytes1024.hound.collect.context.ApplicationContext;
-import cn.bytes1024.hound.collect.enhance.EnhanceFactory;
+import cn.bytes1024.hound.collect.enhance.EnhanceRuleChainProxy;
 import cn.bytes1024.hound.collect.enhance.InterceptorFactory;
 import cn.bytes1024.hound.collect.enhance.rule.*;
 import cn.bytes1024.hound.collect.handler.CollectAgentHandler;
@@ -35,7 +35,7 @@ public class DefineModule extends AbstractModule {
 
         bind(TraceContext.class).toProvider(TraceContextProvider.class).in(Scopes.SINGLETON);
         bind(InterceptorFactory.class).toProvider(InterceptorFactoryProvider.class).in(Scopes.SINGLETON);
-        bind(EnhanceFactory.class).toProvider(EnhanceFactoryProvider.class).in(Scopes.SINGLETON);
+        bind(EnhanceRuleChainProxy.class).toProvider(EnhanceRuleChainProxyProvider.class).in(Scopes.SINGLETON);
 
         bind(EnhanceRule.class).annotatedWith(Names.named(EnhanceRule.Key.METHOD)).to(EnhanceMethodRule.class).in(Scopes.SINGLETON);
         bind(EnhanceRule.class).annotatedWith(Names.named(EnhanceRule.Key.CONSTRUCTOR)).to(EnhanceConstructorRule.class).in(Scopes.SINGLETON);

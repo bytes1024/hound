@@ -27,14 +27,14 @@ public abstract class AbstractEnhanceRule<R> implements EnhanceRule {
     }
 
     @Override
-    public DynamicType.Builder<?> enhance(EnhanceRuleChain chan, DynamicType.Builder<?> builder, EnhanceRuleCallback enhanceRuleCallback) {
-        if (Objects.isNull(enhanceRuleCallback)) {
+    public DynamicType.Builder<?> enhance(EnhanceRuleChain chan, DynamicType.Builder<?> builder, EnhanceRuleOption enhanceRuleOption) {
+        if (Objects.isNull(enhanceRuleOption)) {
             return builder;
         }
 
         try {
-            InterceptorFactory interceptorFactory = enhanceRuleCallback.getInterceptorFactory();
-            EnhanceContext enhanceContext = enhanceRuleCallback.getEnhanceContext();
+            InterceptorFactory interceptorFactory = enhanceRuleOption.getInterceptorFactory();
+            EnhanceContext enhanceContext = enhanceRuleOption.getEnhanceContext();
 
             Object object = interceptorFactory.newInterceptorObject(enhanceContext);
 
@@ -48,7 +48,7 @@ public abstract class AbstractEnhanceRule<R> implements EnhanceRule {
             log.error("enhance  error : {}", e);
         }
 
-        return chan.enhance(builder, enhanceRuleCallback);
+        return chan.enhance(builder, enhanceRuleOption);
     }
 
     /**
