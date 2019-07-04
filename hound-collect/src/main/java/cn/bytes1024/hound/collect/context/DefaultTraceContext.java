@@ -3,7 +3,7 @@ package cn.bytes1024.hound.collect.context;
 import cn.bytes1024.hound.commons.util.NamedThreadLocal;
 import cn.bytes1024.hound.plugins.define.InterceptContext;
 import cn.bytes1024.hound.plugins.define.TraceContext;
-import com.alibaba.fastjson.JSONObject;
+import cn.bytes1024.hound.plugins.define.filter.TraceContextFilterOption;
 import com.alipay.common.tracer.core.SofaTracer;
 import com.alipay.common.tracer.core.context.span.SofaTracerSpanContext;
 import com.alipay.common.tracer.core.context.trace.SofaTracerThreadLocalTraceContext;
@@ -21,7 +21,7 @@ import java.util.Objects;
  */
 @Getter
 @Slf4j
-public class DefaultTraceContext extends SofaTracerThreadLocalTraceContext implements TraceContext {
+public class DefaultTraceContext extends SofaTracerThreadLocalTraceContext implements TraceContext, TraceContextFilterOption {
 
 
     private SofaTracer sofaTracer;
@@ -33,8 +33,11 @@ public class DefaultTraceContext extends SofaTracerThreadLocalTraceContext imple
      */
     private final NamedThreadLocal<ActiveTracerSpan> activeTracerSpans = new NamedThreadLocal<>("activeTracerSpans");
 
-    public DefaultTraceContext(SofaTracer sofaTracer) {
+    private TraceContextFilterOption traceContextFilterOption;
+
+    public DefaultTraceContext(SofaTracer sofaTracer, TraceContextFilterOption traceContextFilterOption) {
         this.sofaTracer = sofaTracer;
+        this.traceContextFilterOption = traceContextFilterOption;
     }
 
     @Override
@@ -51,17 +54,11 @@ public class DefaultTraceContext extends SofaTracerThreadLocalTraceContext imple
         }
 
         SofaTracerSpanContext sofaTracerSpanContext = sofaTracerSpan.getSofaTracerSpanContext();
-        //options setting
-        //TODO 这很容易出问题
+        this.filterOption(sofaTracerSpanContext, interceptContext);
 
-//        System.out.println("----------------------------------->>>>args<<<<-----------------------------------");
-//        System.out.println(interceptContext.getArgs());
-//        System.out.println("----------------------------------->>>>args<<<<-----------------------------------");
-
-        sofaTracerSpanContext.setSysBaggageItem("TARGET_CLASS", interceptContext.getTarget().getClass().getName());
-        sofaTracerSpanContext.setSysBaggageItem("METHOD_CLASS", interceptContext.getMethod().getName());
-        sofaTracerSpanContext.setSysBaggageItem("INVOKER_RESULT", JSONObject.toJSONString(interceptContext.getResult()));
-
+//        sofaTracerSpanContext.setSysBaggageItem("TARGET_CLASS", interceptContext.getTarget().getClass().getName());
+//        sofaTracerSpanContext.setSysBaggageItem("METHOD_CLASS", interceptContext.getMethod().getName());
+//        sofaTracerSpanContext.setSysBaggageItem("INVOKER_RESULT", JSONObject.toJSONString(interceptContext.getResult()));
         sofaTracerSpan.finish();
 
         return sofaTracerSpan;
@@ -130,4 +127,8 @@ public class DefaultTraceContext extends SofaTracerThreadLocalTraceContext imple
     }
 
 
+    @Override
+    public void filterOption(SofaTracerSpanContext sofaTracerSpanContext, InterceptContext interceptContext) {
+        this.traceContextFilterOption.filterOption(sofaTracerSpanContext, interceptContext);
+    }
 }

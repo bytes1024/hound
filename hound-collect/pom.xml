@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <groupId>cn.bytes1024.hound</groupId>
         <artifactId>bytes-hound</artifactId>
@@ -98,7 +99,7 @@
 
 
     <build>
-        <finalName>monitor-agent-collect</finalName>
+        <finalName>hound-agent</finalName>
         <plugins>
 
             <!--<plugin>-->
@@ -134,32 +135,37 @@
                             <shadeSourcesContent>true</shadeSourcesContent>
                             <transformers>
                                 <!--文件追加  com.support.monitor.agent.core.plugin.PluginDefine-->
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
                                     <resource>
                                         META-INF/services/cn.bytes1024.hound.plugins.define.PluginDefine
                                     </resource>
                                 </transformer>
 
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
                                     <resource>
                                         META-INF/plugins/cn.bytes1024.hound.plugins.define.PluginDefine
                                     </resource>
                                 </transformer>
 
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
                                     <resource>
                                         META-INF/services/cn.bytes1024.hound.plugins.define.PluginDefine
                                     </resource>
                                 </transformer>
 
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
                                     <resource>
                                         META-INF/plugins/cn.bytes1024.hound.transfers.define.TransferDefine
                                     </resource>
                                 </transformer>
 
 
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <manifestEntries>
                                         <Premain-Class>${premain.class}</Premain-Class>
                                     </manifestEntries>
