@@ -3,6 +3,7 @@ package cn.bytes1024.hound.collect.context;
 import cn.bytes1024.hound.collect.agent.AgentOption;
 import cn.bytes1024.hound.transfers.define.TransferDefine;
 import cn.bytes1024.hound.transfers.define.TransmitObject;
+import com.alibaba.fastjson.JSONObject;
 import com.alipay.common.tracer.core.context.span.SofaTracerSpanContext;
 import com.alipay.common.tracer.core.reporter.facade.Reporter;
 import com.alipay.common.tracer.core.span.SofaTracerSpan;
@@ -37,14 +38,6 @@ public class DefaultReporter implements Reporter {
     @Override
     public void report(SofaTracerSpan sofaTracerSpan) {
 
-
-        System.out.println(Thread.currentThread().getId() + "  " + sofaTracerSpan
-                + " use " + (sofaTracerSpan.getEndTime() - sofaTracerSpan.getStartTime()) + " ms ");
-        if (Objects.isNull(this.transferDefine)) {
-            //log.info("transferDefine is empty, span: {}", sofaTracerSpan);
-            return;
-        }
-
         if (Objects.isNull(sofaTracerSpan)) {
             return;
         }
@@ -64,7 +57,9 @@ public class DefaultReporter implements Reporter {
         //step1 setting config
         //TODO client
         //this.transferDefine.connection(this.agentConfig.getConfig());
-        this.transferDefine.transmit(transmitObject);
+
+        System.out.println(JSONObject.toJSONString(transmitObject) + "  " + (transmitObject.getEndTime() - transmitObject.getStartTime()) + " ms");
+        //this.transferDefine.transmit(transmitObject);
 
     }
 
