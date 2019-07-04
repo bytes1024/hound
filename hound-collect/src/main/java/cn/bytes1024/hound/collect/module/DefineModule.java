@@ -9,6 +9,8 @@ import cn.bytes1024.hound.collect.handler.CollectAgentHandler;
 import cn.bytes1024.hound.collect.handler.Handler;
 import cn.bytes1024.hound.collect.module.providers.*;
 import cn.bytes1024.hound.plugins.define.TraceContext;
+import cn.bytes1024.hound.plugins.define.filter.DefaultTraceContextFilterOption;
+import cn.bytes1024.hound.plugins.define.filter.TraceContextFilterOption;
 import com.alipay.common.tracer.core.SofaTracer;
 import com.alipay.common.tracer.core.reporter.facade.Reporter;
 import com.google.inject.AbstractModule;
@@ -33,6 +35,7 @@ public class DefineModule extends AbstractModule {
         bind(Reporter.class).toProvider(ServerReporterProvider.class).in(Scopes.SINGLETON);
         bind(SofaTracer.class).toProvider(SofaTracerProvider.class).in(Scopes.SINGLETON);
 
+        bind(TraceContextFilterOption.class).to(DefaultTraceContextFilterOption.class).in(Scopes.SINGLETON);
         bind(TraceContext.class).toProvider(TraceContextProvider.class).in(Scopes.SINGLETON);
         bind(InterceptorFactory.class).toProvider(InterceptorFactoryProvider.class).in(Scopes.SINGLETON);
         bind(EnhanceRuleChainProxy.class).toProvider(EnhanceRuleChainProxyProvider.class).in(Scopes.SINGLETON);
