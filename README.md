@@ -17,7 +17,8 @@ config 配置目前用处不大
 {"bizBaggage":{},"endTime":1562249883960,"operationName":"plugin-tomcat","parentId":"0","sampled":true,"spanId":"0.1","startTime":1562249883949,"sysBaggage":{"method":"invoke","class":"org.apache.catalina.core.StandardHostValve"},"traceId":"c0a89a011562249883949100217996"}  11 ms
 
 ```
-
+##### 系统设计
+![jgt](https://github.com/bytes1024/files/blob/master/hound/images/jgt.png)
 
 
 ##### 功能
