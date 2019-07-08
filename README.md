@@ -21,7 +21,7 @@ mvn clean package -Dmaven.test.skip=true
 ![jgt](https://github.com/bytes1024/files/blob/master/hound/images/jgt.png)
 
 ##### 配置参数
-`agent.properties`
+`-javaagent:agent.jar=agent.properties`
 
 key|value|支持|描述
 |---|---|---|---|
