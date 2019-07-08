@@ -20,6 +20,17 @@ config 配置目前用处不大
 ##### 系统设计
 ![jgt](https://github.com/bytes1024/files/blob/master/hound/images/jgt.png)
 
+##### 配置参数
+`agent.properties`
+
+key|value|支持|描述
+|---|---|---|---|
+|bytes.hound.agent.id|xxx|Y|id标识，后期接入ID校验使用
+|bytes.hound.agent.secret|xx|T|秘钥
+|bytes.hound.transfer.type|web|T-|支持的传输类型
+|bytes.hound.transfer.web.address|http://127.0.0.1:9999/v1/transfer/receive|T|web传输服务地址
+|bytes.hound.transfer.web.batch.max|<0 或 >0|Y|批量传输<=0实时传输
+|bytes.hound.transfer.web.batch.size|1M|Y|堆积数据大小
 
 ##### 功能
 ##### [任务列表](https://github.com/bytes1024/hound/wiki/%E5%BC%80%E5%8F%91%E4%BB%BB%E5%8A%A1%E5%88%97%E8%A1%A8)
