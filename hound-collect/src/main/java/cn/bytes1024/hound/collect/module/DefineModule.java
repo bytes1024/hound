@@ -1,6 +1,5 @@
 package cn.bytes1024.hound.collect.module;
 
-import cn.bytes1024.hound.collect.agent.AgentOption;
 import cn.bytes1024.hound.collect.context.ApplicationContext;
 import cn.bytes1024.hound.collect.enhance.EnhanceRuleChainProxy;
 import cn.bytes1024.hound.collect.enhance.InterceptorFactory;
@@ -8,6 +7,7 @@ import cn.bytes1024.hound.collect.enhance.rule.*;
 import cn.bytes1024.hound.collect.handler.CollectAgentHandler;
 import cn.bytes1024.hound.collect.handler.Handler;
 import cn.bytes1024.hound.collect.module.providers.*;
+import cn.bytes1024.hound.commons.option.ConfigOption;
 import cn.bytes1024.hound.plugins.define.TraceContext;
 import cn.bytes1024.hound.plugins.define.filter.DefaultTraceContextFilterOption;
 import cn.bytes1024.hound.plugins.define.filter.TraceContextFilterOption;
@@ -27,7 +27,7 @@ public class DefineModule extends AbstractModule {
     @Override
     protected void configure() {
         bind(ApplicationContext.class).toProvider(ApplicationContextProvider.class).in(Scopes.SINGLETON);
-        bind(AgentOption.class).toProvider(AgentOptionProvider.class).in(Scopes.SINGLETON);
+        bind(ConfigOption.class).toProvider(AgentOptionProvider.class).in(Scopes.SINGLETON);
 
         bind(AgentBuilder.class).to(AgentBuilder.Default.class).in(Scopes.SINGLETON);
         bind(Handler.class).annotatedWith(Names.named("agent")).to(CollectAgentHandler.class).in(Scopes.SINGLETON);

@@ -1,26 +1,24 @@
-package cn.bytes1024.hound.collect.agent;
+package cn.bytes1024.hound.commons.option;
 
-import lombok.extern.slf4j.Slf4j;
+
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.instrument.Instrumentation;
 import java.util.Properties;
 import java.util.UUID;
 
 /**
  * @author 江浩
  */
-@Slf4j
-public class DefaultAgentOption extends Properties implements AgentOption {
+public class DefaultConfigOption extends Properties implements ConfigOption {
 
     private static final String DEFAULT = "agent.properties";
 
     private String path;
 
-    public DefaultAgentOption(String path) {
+    public DefaultConfigOption(String path) {
         this.path = path;
         this.load(this.path);
     }
@@ -31,13 +29,12 @@ public class DefaultAgentOption extends Properties implements AgentOption {
         try {
 
             InputStream inputStream =
-                    readFile(path) ? new FileInputStream(path):
+                    readFile(path) ? new FileInputStream(path) :
                             this.getClass().getClassLoader().getResourceAsStream(DEFAULT);
 
             this.load(inputStream);
         } catch (IOException e) {
             e.printStackTrace();
-            log.error("load config path: {} error",path);
         }
     }
 
@@ -47,12 +44,12 @@ public class DefaultAgentOption extends Properties implements AgentOption {
 
     @Override
     public String getAgentId() {
-        return this.getProperty("bytes.hound.agent.id","");
+        return this.getProperty("bytes.hound.agent.id", "");
     }
 
     @Override
     public String getTransfer() {
-        return this.getOption("bytes.hound.transfer.name","");
+        return this.getOption("bytes.hound.transfer.type", "");
     }
 
     @Override
@@ -63,9 +60,8 @@ public class DefaultAgentOption extends Properties implements AgentOption {
 
     @Override
     public String getOption(String key, String defaultValue) {
-        return this.getProperty(key,defaultValue);
+        return this.getProperty(key, defaultValue);
     }
-
 
 
 }

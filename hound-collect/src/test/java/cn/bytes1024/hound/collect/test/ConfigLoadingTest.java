@@ -1,7 +1,7 @@
 package cn.bytes1024.hound.collect.test;
 
-import cn.bytes1024.hound.collect.agent.AgentOption;
-import cn.bytes1024.hound.collect.agent.DefaultAgentOption;
+import cn.bytes1024.hound.commons.option.ConfigOption;
+import cn.bytes1024.hound.commons.option.DefaultConfigOption;
 import org.junit.Test;
 
 public class ConfigLoadingTest {
@@ -9,9 +9,9 @@ public class ConfigLoadingTest {
     @Test
     public void loadTest() {
 
-        AgentOption agentOption = new DefaultAgentOption("E:\\test.properties");
+        ConfigOption configOption = new DefaultConfigOption("E:\\test.properties");
 
-        System.out.println(agentOption.getAgentId());
+        System.out.println(configOption.getAgentId());
 
     }
 }

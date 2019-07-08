@@ -1,17 +1,16 @@
-package cn.bytes1024.hound.collect.agent;
-
-import java.lang.instrument.Instrumentation;
-import java.util.Properties;
+package cn.bytes1024.hound.commons.option;
 
 /**
- * 探针配置信息
+ * 配置加载信息
+ *
  * @author 江浩
  */
-public interface AgentOption  {
+public interface ConfigOption {
 
 
     /**
      * 加载配置信息
+     *
      * @param path :
      * @return : void
      * @author 江浩
@@ -21,6 +20,7 @@ public interface AgentOption  {
 
     /**
      * 获取探针编号
+     *
      * @return : java.lang.String
      * @author 江浩
      */
@@ -28,12 +28,14 @@ public interface AgentOption  {
 
     /**
      * 获取传输方式
+     *
      * @return
      */
     String getTransfer();
 
     /**
      * tracer类型
+     *
      * @return : java.lang.String
      * @author 江浩
      */
@@ -41,12 +43,13 @@ public interface AgentOption  {
 
     /**
      * 获取属性信息
-     * @param key :
+     *
+     * @param key          :
      * @param defaultValue :
      * @return : java.lang.String
      * @author 江浩
      */
-    String getOption(String key,String defaultValue);
+    String getOption(String key, String defaultValue);
 
 
 }

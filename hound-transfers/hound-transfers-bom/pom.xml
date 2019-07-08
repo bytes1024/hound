@@ -14,12 +14,12 @@
 
     <dependencies>
 
+
         <dependency>
             <groupId>cn.bytes1024.hound</groupId>
-            <artifactId>hound-transfers-define</artifactId>
+            <artifactId>hound-transfers-web</artifactId>
             <version>${project.version}</version>
         </dependency>
-
     </dependencies>
 
 </project>

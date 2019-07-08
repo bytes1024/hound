@@ -1,7 +1,7 @@
 package cn.bytes1024.hound.collect.handler;
 
-import cn.bytes1024.hound.collect.agent.AgentOption;
 import cn.bytes1024.hound.collect.enhance.EnhanceRuleChainProxy;
+import cn.bytes1024.hound.commons.option.ConfigOption;
 import cn.bytes1024.hound.loader.ExtensionLoader;
 import cn.bytes1024.hound.plugins.define.EnhanceContext;
 import cn.bytes1024.hound.plugins.define.PluginDefine;
@@ -45,12 +45,12 @@ public class CollectAgentHandler implements Handler {
     }
 
     @Override
-    public void handle(AgentOption agentOption, CountDownLatch countDownLatch) {
+    public void handle(ConfigOption configOption, CountDownLatch countDownLatch) {
         if (Objects.isNull(countDownLatch)) {
             return;
         }
 
-        String agentId = agentOption.getAgentId();
+        String agentId = configOption.getAgentId();
         log.info("collect agent : {} starting", agentId);
         List<PluginDefine> plugins = extensionLoader.getSupportedVExtensions();
         log.info("loading plugins {}...", plugins.size());
