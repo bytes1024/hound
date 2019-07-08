@@ -1,5 +1,7 @@
 package cn.bytes1024.hound.transfers.define;
 
+import cn.bytes1024.hound.commons.option.ConfigOption;
+
 /**
  * 传输定义
  * <p>
@@ -14,11 +16,12 @@ package cn.bytes1024.hound.transfers.define;
 public interface TransferDefine {
 
     /**
-     * 信息传输
+     * 数据传输信息
      *
-     * @param transmitObject
+     * @param configOption   :
+     * @param transmitObject :
+     * @return : void
+     * @author 江浩
      */
-    void transmit(TransmitObject transmitObject);
-
-
+    void transmit(ConfigOption configOption, TransmitObject transmitObject);
 }

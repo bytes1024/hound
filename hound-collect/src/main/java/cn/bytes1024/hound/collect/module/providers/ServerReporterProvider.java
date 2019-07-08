@@ -1,7 +1,7 @@
 package cn.bytes1024.hound.collect.module.providers;
 
-import cn.bytes1024.hound.collect.agent.AgentOption;
 import cn.bytes1024.hound.collect.context.DefaultReporter;
+import cn.bytes1024.hound.commons.option.ConfigOption;
 import cn.bytes1024.hound.loader.ExtensionLoader;
 import cn.bytes1024.hound.transfers.define.TransferDefine;
 import com.alipay.common.tracer.core.reporter.facade.Reporter;
@@ -23,17 +23,17 @@ public class ServerReporterProvider implements Provider<Reporter> {
 
     private TransferDefine transferDefine = null;
 
-    private AgentOption agentOption;
+    private ConfigOption configOption;
 
     @Inject
-    public ServerReporterProvider(AgentOption agentOption) {
-        this.agentOption = agentOption;
-        this.transferDefine = transferDefineExtensions.getExtension(this.agentOption.getTransfer());
-        log.info("transfer plugin : {},{}", this.agentOption.getTransfer(), this.transferDefine);
+    public ServerReporterProvider(ConfigOption configOption) {
+        this.configOption = configOption;
+        this.transferDefine = transferDefineExtensions.getExtension(this.configOption.getTransfer());
+        log.info("transfer plugin : {},{}", this.configOption.getTransfer(), this.transferDefine);
     }
 
     @Override
     public Reporter get() {
-        return new DefaultReporter(this.transferDefine, this.agentOption);
+        return new DefaultReporter(this.transferDefine, this.configOption);
     }
 }

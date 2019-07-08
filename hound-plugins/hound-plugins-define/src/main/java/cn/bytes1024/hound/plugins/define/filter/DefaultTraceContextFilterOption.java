@@ -23,6 +23,8 @@ public class DefaultTraceContextFilterOption implements TraceContextFilterOption
     public void filterOption(SofaTracerSpanContext sofaTracerSpanContext, InterceptContext interceptContext) {
         sofaTracerSpanContext.setSysBaggageItem(CLASS_NAME, interceptContext.getTarget().getClass().getName());
         sofaTracerSpanContext.setSysBaggageItem(METHOD_NAME, interceptContext.getMethod().getName());
+        Throwable throwable = interceptContext.getThrowable();
+        sofaTracerSpanContext.setSysBaggageItem(EXCEPTION, Objects.isNull(throwable) ? "" : throwable.toString());
         //TODO 参数跟返回值的传递
         //this.filterParamsOption(sofaTracerSpanContext, interceptContext.getMethod().getParameters(), interceptContext.getArgs());
         //this.filterResultOption(sofaTracerSpanContext, interceptContext.getResult());

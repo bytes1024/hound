@@ -1,7 +1,7 @@
 package cn.bytes1024.hound.collect.module.providers;
 
-import cn.bytes1024.hound.collect.agent.AgentOption;
-import cn.bytes1024.hound.collect.agent.DefaultAgentOption;
+import cn.bytes1024.hound.commons.option.ConfigOption;
+import cn.bytes1024.hound.commons.option.DefaultConfigOption;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.name.Named;
@@ -9,7 +9,7 @@ import com.google.inject.name.Named;
 /**
  * @author 江浩
  */
-public class AgentOptionProvider implements Provider<AgentOption> {
+public class AgentOptionProvider implements Provider<ConfigOption> {
 
     private String args;
 
@@ -19,7 +19,7 @@ public class AgentOptionProvider implements Provider<AgentOption> {
     }
 
     @Override
-    public AgentOption get() {
-        return new DefaultAgentOption(this.args);
+    public ConfigOption get() {
+        return new DefaultConfigOption(this.args);
     }
 }

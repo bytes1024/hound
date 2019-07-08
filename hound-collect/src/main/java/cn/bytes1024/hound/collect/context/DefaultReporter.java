@@ -1,9 +1,8 @@
 package cn.bytes1024.hound.collect.context;
 
-import cn.bytes1024.hound.collect.agent.AgentOption;
+import cn.bytes1024.hound.commons.option.ConfigOption;
 import cn.bytes1024.hound.transfers.define.TransferDefine;
 import cn.bytes1024.hound.transfers.define.TransmitObject;
-import com.alibaba.fastjson.JSONObject;
 import com.alipay.common.tracer.core.context.span.SofaTracerSpanContext;
 import com.alipay.common.tracer.core.reporter.facade.Reporter;
 import com.alipay.common.tracer.core.span.SofaTracerSpan;
@@ -23,11 +22,11 @@ public class DefaultReporter implements Reporter {
 
     private TransferDefine transferDefine;
 
-    private AgentOption agentOption;
+    private ConfigOption configOption;
 
-    public DefaultReporter(TransferDefine transferDefine, AgentOption agentOption) {
+    public DefaultReporter(TransferDefine transferDefine, ConfigOption configOption) {
         this.transferDefine = transferDefine;
-        this.agentOption = agentOption;
+        this.configOption = configOption;
     }
 
     @Override
@@ -54,12 +53,7 @@ public class DefaultReporter implements Reporter {
                 .setEndTime(sofaTracerSpan.getEndTime())
                 .setSampled(sofaTracerSpanContext.isSampled());
 
-        //step1 setting config
-        //TODO client
-        //this.transferDefine.connection(this.agentConfig.getConfig());
-
-        System.out.println(JSONObject.toJSONString(transmitObject) + "  " + (transmitObject.getEndTime() - transmitObject.getStartTime()) + " ms");
-        //this.transferDefine.transmit(transmitObject);
+        this.transferDefine.transmit(configOption, transmitObject);
 
     }
 

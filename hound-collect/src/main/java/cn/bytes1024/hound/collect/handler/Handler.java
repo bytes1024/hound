@@ -1,6 +1,6 @@
 package cn.bytes1024.hound.collect.handler;
 
-import cn.bytes1024.hound.collect.agent.AgentOption;
+import cn.bytes1024.hound.commons.option.ConfigOption;
 
 import java.util.concurrent.CountDownLatch;
 
@@ -14,22 +14,22 @@ public interface Handler {
     /**
      * 处理
      *
-     * @param agentOption :
+     * @param configOption :
      * @return : void
      * @author 江浩
      */
-    default void handle(AgentOption agentOption) {
-        handle(agentOption, null);
+    default void handle(ConfigOption configOption) {
+        handle(configOption, null);
     }
 
     /**
      * 判定是否启动完全
      *
-     * @param agentOption    :
+     * @param configOption   :
      * @param countDownLatch :
      * @author 江浩
      */
-    void handle(AgentOption agentOption, CountDownLatch countDownLatch);
+    void handle(ConfigOption configOption, CountDownLatch countDownLatch);
 
 
     /**

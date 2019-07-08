@@ -41,5 +41,4 @@ public class TransmitObject implements Serializable {
     private Long startTime;
 
     private Long endTime;
-
 }

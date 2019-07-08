@@ -16,28 +16,34 @@ public interface TraceContextFilterOption {
      *
      * @author 江浩
      */
-    final String CLASS_NAME = "class";
+    String CLASS_NAME = "class";
 
     /**
      * 拦截的方法
      *
      * @author 江浩
      */
-    final String METHOD_NAME = "method";
+    String METHOD_NAME = "method";
 
     /**
      * 使用的参数
      *
      * @author 江浩
      */
-    final String PARAMS = "params";
+    String PARAMS = "params";
 
     /**
      * 返回值
      *
      * @author 江浩
      */
-    final String RESULT = "result";
+    String RESULT = "result";
+
+
+    /**
+     * 异常对应key
+     */
+    String EXCEPTION = "exception";
 
     /**
      * 拦截信息过滤设置
