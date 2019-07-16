@@ -11,6 +11,9 @@ import java.util.Objects;
 
 /**
  * rest api 数据传输器
+ * <p>
+ * 1.目前内嵌传输使用 okhttp，但是他又是内嵌的插件之一，循环调用的问题
+ * </p>
  *
  * @author 江浩
  */
@@ -19,18 +22,17 @@ public class OkHttpRestApiTransfer extends AbstractRestApiTransfer {
 
     private OkHttpClient okHttpClient = new OkHttpClient();
 
+    private MediaType mediaType = MediaType.parse("application/json");
+
     @Override
     public void transmit(ConfigOption configOption, TransmitObject transmitObject) {
 
         //bytes.hound.transfer.web.address
         //bytes.hound.transfer.web.batch.max
         // TODO: 2019/7/8 缓冲数据设置
-        RequestBody requestBody = RequestBody.create(
-                MediaType.parse("application/json"),
-                JSONObject.toJSONString(transmitObject)
-        );
+        RequestBody requestBody = RequestBody.create(mediaType, JSONObject.toJSONString(transmitObject));
         String responseJson = this.postResponseJson(getRemoteAddress(configOption), requestBody);
-        System.out.println(responseJson);
+        System.out.println("数据提交：" + responseJson);
     }
 
 
@@ -47,6 +49,7 @@ public class OkHttpRestApiTransfer extends AbstractRestApiTransfer {
         Request request = new Request.Builder()
                 .url(url)
                 .post(requestBody)
+                .header("OKHTTP-IGNORE-DEFINE", "true")
                 .build();
 
         Call call = okHttpClient.newCall(request);

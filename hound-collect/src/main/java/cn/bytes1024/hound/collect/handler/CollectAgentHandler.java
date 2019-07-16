@@ -20,6 +20,7 @@ import java.util.Objects;
 import java.util.concurrent.CountDownLatch;
 
 import static net.bytebuddy.matcher.ElementMatchers.isInterface;
+import static net.bytebuddy.matcher.ElementMatchers.nameStartsWith;
 
 /**
  * @author 江浩
@@ -74,7 +75,9 @@ public class CollectAgentHandler implements Handler {
         } else {
             List<EnhanceContext> enhanceContexts = pluginDefine.enhanceContexts();
             log.info("plugin name loading: {} len {}", pluginDefine.name(), CollectionUtils.isEmpty(enhanceContexts) ? 0 : enhanceContexts.size());
-            this.agentBuilder.type(ElementMatchers.not(isInterface()).and(classDescription))
+            this.agentBuilder
+                    .ignore(nameStartsWith("cn.bytes1024.hound"))
+                    .type(ElementMatchers.not(isInterface()).and(classDescription))
                     .transform((builder, typeDescription, classLoader, module) -> enhanceRuleChainProxy.enhance(builder, enhanceContexts))
                     //TODO
                     //.with(new AgentEnhanceLister(this.enhanceDebugFactory))
