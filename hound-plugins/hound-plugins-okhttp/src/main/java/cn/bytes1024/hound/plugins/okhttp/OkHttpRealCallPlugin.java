@@ -6,6 +6,11 @@ import cn.bytes1024.hound.plugins.okhttp.interceptor.OkHttpRealCallMethodInterce
 
 import static net.bytebuddy.matcher.ElementMatchers.named;
 
+/**
+ * okhttp3.RealCall
+ *
+ * @author 江浩
+ */
 public class OkHttpRealCallPlugin extends AbstractPluginDefine {
     @Override
     public void init(AbstractPluginDefine.PluginDefineBuilder defineBuilder) {

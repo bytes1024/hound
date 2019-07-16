@@ -2,8 +2,10 @@ package cn.bytes1024.hound.plugins.okhttp.interceptor;
 
 import cn.bytes1024.hound.plugins.define.InterceptContext;
 import cn.bytes1024.hound.plugins.define.TraceContext;
+import cn.bytes1024.hound.plugins.define.interceptor.IgnoreInterceptor;
 import cn.bytes1024.hound.plugins.define.interceptor.supper.AbstractTransmissionMethodAroundInterceptor;
 import cn.bytes1024.hound.plugins.define.interceptor.supper.RemoteTransmission;
+import cn.bytes1024.hound.plugins.okhttp.Containts;
 import com.alipay.common.tracer.core.context.span.SofaTracerSpanContext;
 import okhttp3.Headers;
 import okhttp3.Request;
@@ -20,7 +22,9 @@ import java.util.Objects;
  *
  * @author 江浩
  */
-public class OkHttpClientMethodInterceptor extends AbstractTransmissionMethodAroundInterceptor<Request> {
+public class OkHttpClientMethodInterceptor extends AbstractTransmissionMethodAroundInterceptor<Request> implements IgnoreInterceptor<Request> {
+
+
     public OkHttpClientMethodInterceptor(TraceContext traceContext) {
         super(traceContext);
 
@@ -33,7 +37,6 @@ public class OkHttpClientMethodInterceptor extends AbstractTransmissionMethodAro
                     Headers.Builder headerBuilder = handler.headers().newBuilder();
                     //原始header信息
                     Headers headers = handler.headers();
-
                     if (!Objects.isNull(headers)) {
                         Map<String, List<String>> multimap = headers.toMultimap();
                         if (MapUtils.isNotEmpty(multimap)) {
@@ -63,7 +66,13 @@ public class OkHttpClientMethodInterceptor extends AbstractTransmissionMethodAro
             return;
         }
 
-        super.before((Request) arg0, interceptContext);
+        Request request = (Request) arg0;
+        if (ignore(request)) {
+            interceptContext.setIgnored(true);
+            return;
+        }
+        super.before(request, interceptContext);
+
     }
 
     @Override
@@ -72,5 +81,11 @@ public class OkHttpClientMethodInterceptor extends AbstractTransmissionMethodAro
             return;
         }
         super.after(interceptContext);
+    }
+
+    @Override
+    public boolean ignore(Request handler) {
+
+        return StringUtils.isNotBlank(handler.header(Containts.IGNORE_HEADER_KEY));
     }
 }
