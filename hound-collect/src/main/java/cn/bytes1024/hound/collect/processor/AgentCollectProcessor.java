@@ -1,7 +1,10 @@
-package cn.bytes1024.hound.collect.handler;
+package cn.bytes1024.hound.collect.processor;
 
 import cn.bytes1024.hound.collect.enhance.EnhanceRuleChainProxy;
+import cn.bytes1024.hound.commons.enums.ProcessorStatus;
+import cn.bytes1024.hound.commons.enums.ProcessorType;
 import cn.bytes1024.hound.commons.option.ConfigOption;
+import cn.bytes1024.hound.commons.option.ConfigOptionKey;
 import cn.bytes1024.hound.loader.ExtensionLoader;
 import cn.bytes1024.hound.plugins.define.EnhanceContext;
 import cn.bytes1024.hound.plugins.define.PluginDefine;
@@ -16,8 +19,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.lang.instrument.Instrumentation;
 import java.util.List;
-import java.util.Objects;
-import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.atomic.AtomicReference;
 
 import static net.bytebuddy.matcher.ElementMatchers.isInterface;
 import static net.bytebuddy.matcher.ElementMatchers.nameStartsWith;
@@ -26,7 +28,7 @@ import static net.bytebuddy.matcher.ElementMatchers.nameStartsWith;
  * @author 江浩
  */
 @Slf4j
-public class CollectAgentHandler implements Handler {
+public class AgentCollectProcessor extends AbstractProcessor {
 
     private AgentBuilder agentBuilder;
 
@@ -36,32 +38,43 @@ public class CollectAgentHandler implements Handler {
 
     private ExtensionLoader<PluginDefine> extensionLoader = ExtensionLoader.getExtensionLoader(PluginDefine.class);
 
+    private AtomicReference<ProcessorStatus> processorStatusReference = new AtomicReference<>(status());
+
+
     @Inject
-    public CollectAgentHandler(AgentBuilder agentBuilder,
-                               Instrumentation instrumentation,
-                               EnhanceRuleChainProxy enhanceRuleChainProxy) {
+    public AgentCollectProcessor(AgentBuilder agentBuilder,
+                                 Instrumentation instrumentation,
+                                 EnhanceRuleChainProxy enhanceRuleChainProxy) {
         this.agentBuilder = agentBuilder;
         this.instrumentation = instrumentation;
         this.enhanceRuleChainProxy = enhanceRuleChainProxy;
     }
 
     @Override
-    public void handle(ConfigOption configOption, CountDownLatch countDownLatch) {
-        if (Objects.isNull(countDownLatch)) {
+    public ProcessorType type() {
+        return ProcessorType.AGENT;
+    }
+
+    @Override
+    public void start(ConfigOption configOption) {
+
+        if (processorStatusReference.get().equals(ProcessorStatus.RUN)) {
+            log.debug("processor [{}] is runing ", this.getClass().getSimpleName());
             return;
         }
 
-        String agentId = configOption.getAgentId();
+        String agentId = configOption.getOption(ConfigOptionKey.AGENT_ID, null);
         log.info("collect agent : {} starting", agentId);
         List<PluginDefine> plugins = extensionLoader.getSupportedVExtensions();
         log.info("loading plugins {}...", plugins.size());
-        this.handle(plugins, 0);
+        this.start(plugins, 0);
 
-        countDownLatch.countDown();
+        processorStatusReference.set(ProcessorStatus.RUN);
+
     }
 
 
-    private void handle(List<PluginDefine> loadPlugins, int index) {
+    private void start(List<PluginDefine> loadPlugins, int index) {
 
         if (index >= loadPlugins.size()) {
             return;
@@ -84,7 +97,7 @@ public class CollectAgentHandler implements Handler {
                     .installOn(this.instrumentation);
         }
 
-        this.handle(loadPlugins, ++index);
+        this.start(loadPlugins, ++index);
     }
 
 

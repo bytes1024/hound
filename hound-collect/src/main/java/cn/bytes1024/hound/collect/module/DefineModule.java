@@ -4,9 +4,10 @@ import cn.bytes1024.hound.collect.context.ApplicationContext;
 import cn.bytes1024.hound.collect.enhance.EnhanceRuleChainProxy;
 import cn.bytes1024.hound.collect.enhance.InterceptorFactory;
 import cn.bytes1024.hound.collect.enhance.rule.*;
-import cn.bytes1024.hound.collect.handler.CollectAgentHandler;
-import cn.bytes1024.hound.collect.handler.Handler;
 import cn.bytes1024.hound.collect.module.providers.*;
+import cn.bytes1024.hound.collect.processor.AgentCollectProcessor;
+import cn.bytes1024.hound.collect.processor.MetricsCollectProcessor;
+import cn.bytes1024.hound.collect.processor.Processor;
 import cn.bytes1024.hound.commons.option.ConfigOption;
 import cn.bytes1024.hound.plugins.define.TraceContext;
 import cn.bytes1024.hound.plugins.define.filter.DefaultTraceContextFilterOption;
@@ -24,13 +25,25 @@ import net.bytebuddy.agent.builder.AgentBuilder;
  * @author 江浩
  */
 public class DefineModule extends AbstractModule {
+
+
+    public static class Alias {
+        public static final String AGENT = "agent";
+        public static final String METRICS = "metrics";
+    }
+
+
     @Override
     protected void configure() {
         bind(ApplicationContext.class).toProvider(ApplicationContextProvider.class).in(Scopes.SINGLETON);
         bind(ConfigOption.class).toProvider(AgentOptionProvider.class).in(Scopes.SINGLETON);
 
         bind(AgentBuilder.class).to(AgentBuilder.Default.class).in(Scopes.SINGLETON);
-        bind(Handler.class).annotatedWith(Names.named("agent")).to(CollectAgentHandler.class).in(Scopes.SINGLETON);
+        bind(Processor.class).annotatedWith(Names.named(Alias.AGENT))
+                .to(AgentCollectProcessor.class).in(Scopes.SINGLETON);
+
+        bind(Processor.class).annotatedWith(Names.named(Alias.METRICS))
+                .to(MetricsCollectProcessor.class).in(Scopes.SINGLETON);
 
         bind(Reporter.class).toProvider(ServerReporterProvider.class).in(Scopes.SINGLETON);
         bind(SofaTracer.class).toProvider(SofaTracerProvider.class).in(Scopes.SINGLETON);
