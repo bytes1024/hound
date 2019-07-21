@@ -4,7 +4,7 @@ import cn.bytes1024.hound.collect.enhance.EnhanceRuleChainProxy;
 import cn.bytes1024.hound.commons.enums.ProcessorStatus;
 import cn.bytes1024.hound.commons.enums.ProcessorType;
 import cn.bytes1024.hound.commons.option.ConfigOption;
-import cn.bytes1024.hound.commons.option.ConfigOptionKey;
+import cn.bytes1024.hound.commons.option.ConfigOptionDefine;
 import cn.bytes1024.hound.loader.ExtensionLoader;
 import cn.bytes1024.hound.plugins.define.EnhanceContext;
 import cn.bytes1024.hound.plugins.define.PluginDefine;
@@ -63,7 +63,7 @@ public class AgentCollectProcessor extends AbstractProcessor {
             return;
         }
 
-        String agentId = configOption.getOption(ConfigOptionKey.AGENT_ID, null);
+        String agentId = configOption.getOption(ConfigOptionDefine.AGENT_ID, null);
         log.info("collect agent : {} starting", agentId);
         List<PluginDefine> plugins = extensionLoader.getSupportedVExtensions();
         log.info("loading plugins {}...", plugins.size());
