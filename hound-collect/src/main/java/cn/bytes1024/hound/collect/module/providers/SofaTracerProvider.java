@@ -1,6 +1,7 @@
 package cn.bytes1024.hound.collect.module.providers;
 
 import cn.bytes1024.hound.commons.option.ConfigOption;
+import cn.bytes1024.hound.commons.option.ConfigOptionDefine;
 import com.alipay.common.tracer.core.SofaTracer;
 import com.alipay.common.tracer.core.reporter.facade.Reporter;
 import com.google.inject.Inject;
@@ -25,7 +26,7 @@ public class SofaTracerProvider implements Provider<SofaTracer> {
 
     @Override
     public SofaTracer get() {
-        return new SofaTracer.Builder(configOption.getTracerType())
+        return new SofaTracer.Builder(configOption.getOption(ConfigOptionDefine.TRACER_TYPE, null))
                 .withClientReporter(reporter)
                 .withServerReporter(reporter)
                 .build();
