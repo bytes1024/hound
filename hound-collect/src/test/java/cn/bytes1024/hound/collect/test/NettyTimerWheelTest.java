@@ -26,7 +26,6 @@ public class NettyTimerWheelTest implements TimerTask {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            hashedWheelTimer.
         }
     }
 
