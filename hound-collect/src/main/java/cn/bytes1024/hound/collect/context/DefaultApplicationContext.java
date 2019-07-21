@@ -1,6 +1,6 @@
 package cn.bytes1024.hound.collect.context;
 
-import cn.bytes1024.hound.collect.handler.Handler;
+import cn.bytes1024.hound.collect.processor.Processor;
 import cn.bytes1024.hound.commons.option.ConfigOption;
 import cn.bytes1024.hound.commons.util.ThreadPoolUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -9,6 +9,7 @@ import org.apache.commons.collections.CollectionUtils;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 默认容器环境
@@ -20,38 +21,36 @@ public class DefaultApplicationContext implements ApplicationContext {
 
     private ConfigOption configOption;
 
-    private List<Handler> handlers;
+    private List<Processor> processors;
 
     private ThreadPoolExecutor poolExecutor = ThreadPoolUtils.newFixedThreadPool(3, DefaultApplicationContext.class.getName());
 
     public DefaultApplicationContext(ConfigOption configOption,
-                                     List<Handler> handlers) {
+                                     List<Processor> processors) {
         this.configOption = configOption;
-        this.handlers = handlers;
+        this.processors = processors;
     }
 
     @Override
     public void start() {
 
-        if (CollectionUtils.isNotEmpty(handlers)) {
+        if (CollectionUtils.isNotEmpty(processors)) {
 
-            CountDownLatch countDownLatch = new CountDownLatch(this.handlers.size());
+            CountDownLatch countDownLatch = new CountDownLatch(this.processors.size());
 
-            handlers.forEach(handler -> poolExecutor.execute(() -> {
+            processors.forEach(handler -> poolExecutor.execute(() -> {
                 try {
-                    handler.handle(configOption, countDownLatch);
+                    handler.start(configOption, countDownLatch);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }));
 
             try {
-                countDownLatch.await();
+                countDownLatch.await(60, TimeUnit.SECONDS);
             } catch (InterruptedException e) {
                 log.error("handler start error : {}", e);
-
                 this.close();
-
             }
         }
 
@@ -59,8 +58,8 @@ public class DefaultApplicationContext implements ApplicationContext {
 
     @Override
     public void close() {
-        if (CollectionUtils.isNotEmpty(handlers)) {
-            handlers.forEach(Handler::destroy);
+        if (CollectionUtils.isNotEmpty(processors)) {
+            processors.forEach(Processor::destroy);
         }
     }
 }

@@ -2,7 +2,8 @@ package cn.bytes1024.hound.collect.module.providers;
 
 import cn.bytes1024.hound.collect.context.ApplicationContext;
 import cn.bytes1024.hound.collect.context.DefaultApplicationContext;
-import cn.bytes1024.hound.collect.handler.Handler;
+import cn.bytes1024.hound.collect.module.DefineModule;
+import cn.bytes1024.hound.collect.processor.Processor;
 import cn.bytes1024.hound.commons.option.ConfigOption;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
@@ -23,17 +24,20 @@ public class ApplicationContextProvider implements Provider<ApplicationContext> 
      *
      * @author 江浩
      */
-    private List<Handler> handlers = new ArrayList<>();
+    private List<Processor> processors = new ArrayList<>();
 
     @Inject
     public ApplicationContextProvider(ConfigOption configOption,
-                                      @Named("agent") Handler agentHandler) {
+                                      @Named(DefineModule.Alias.AGENT) Processor agentProcessor,
+                                      @Named(DefineModule.Alias.METRICS) Processor metricsProcesser
+    ) {
         this.configOption = configOption;
-        handlers.add(agentHandler);
+        processors.add(agentProcessor);
+        processors.add(metricsProcesser);
     }
 
     @Override
     public ApplicationContext get() {
-        return new DefaultApplicationContext(this.configOption, this.handlers);
+        return new DefaultApplicationContext(this.configOption, this.processors);
     }
 }
