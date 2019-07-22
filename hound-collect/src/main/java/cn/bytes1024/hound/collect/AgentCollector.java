@@ -1,4 +1,4 @@
-package cn.bytes1024.hound.collect.collector;
+package cn.bytes1024.hound.collect;
 
 
 import cn.bytes1024.hound.collect.module.CollectModuleFactory;

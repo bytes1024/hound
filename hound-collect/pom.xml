@@ -11,7 +11,7 @@
     <artifactId>hound-collect</artifactId>
 
     <properties>
-        <premain.class>cn.bytes1024.hound.collect.collector.AgentCollector</premain.class>
+        <premain.class>cn.bytes1024.hound.collect.AgentCollector</premain.class>
         <deploy.skip>true</deploy.skip>
     </properties>
 
