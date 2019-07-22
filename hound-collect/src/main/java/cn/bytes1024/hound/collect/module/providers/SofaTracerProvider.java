@@ -26,7 +26,7 @@ public class SofaTracerProvider implements Provider<SofaTracer> {
 
     @Override
     public SofaTracer get() {
-        return new SofaTracer.Builder(configOption.getOption(ConfigOptionDefine.TRACER_TYPE, null))
+        return new SofaTracer.Builder(ConfigOptionDefine.getTracerType(configOption))
                 .withClientReporter(reporter)
                 .withServerReporter(reporter)
                 .build();

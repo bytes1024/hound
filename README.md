@@ -27,6 +27,8 @@ key|value|支持|描述
 |---|---|---|---|
 |bytes.hound.agent.id|xxx|Y|id标识，后期接入ID校验使用
 |bytes.hound.agent.secret|xx|T|秘钥
+|bytes.hound.transfer.enabled|true或false|T|远程传输<影响transfer其他配置>
+|bytes.hound.transfer.content.show.enabled|true或false|T|是否打印传输内容
 |bytes.hound.transfer.type|web|T-|支持的传输类型
 |bytes.hound.transfer.web.address|http://127.0.0.1:9999/v1/transfer/receive|T|web传输服务地址
 |bytes.hound.transfer.web.batch.max|<0 或 >0|Y|批量传输<=0实时传输

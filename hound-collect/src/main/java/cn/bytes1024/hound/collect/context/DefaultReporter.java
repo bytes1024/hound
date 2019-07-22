@@ -1,6 +1,7 @@
 package cn.bytes1024.hound.collect.context;
 
 import cn.bytes1024.hound.commons.option.ConfigOption;
+import cn.bytes1024.hound.commons.option.ConfigOptionDefine;
 import cn.bytes1024.hound.transfers.define.TransferDefine;
 import cn.bytes1024.hound.transfers.define.TransmitObject;
 import com.alipay.common.tracer.core.context.span.SofaTracerSpanContext;
@@ -41,6 +42,7 @@ public class DefaultReporter implements Reporter {
             return;
         }
 
+
         SofaTracerSpanContext sofaTracerSpanContext = sofaTracerSpan.getSofaTracerSpanContext();
         TransmitObject transmitObject = new TransmitObject()
                 .setOperationName(sofaTracerSpan.getOperationName())
@@ -53,7 +55,13 @@ public class DefaultReporter implements Reporter {
                 .setEndTime(sofaTracerSpan.getEndTime())
                 .setSampled(sofaTracerSpanContext.isSampled());
 
-        this.transferDefine.transmit(configOption, transmitObject);
+        if (ConfigOptionDefine.isOpenTransmitContentView(configOption)) {
+            log.info("{}", transmitObject);
+        }
+
+        if (!Objects.isNull(transferDefine)) {
+            this.transferDefine.transmit(configOption, transmitObject);
+        }
 
     }
 

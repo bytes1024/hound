@@ -29,10 +29,18 @@ public class ServerReporterProvider implements Provider<Reporter> {
     @Inject
     public ServerReporterProvider(ConfigOption configOption) {
         this.configOption = configOption;
-        String transferType = this.configOption.getOption(ConfigOptionDefine.TRANSFER_TYPE, null);
-        this.transferDefine = transferDefineExtensions.getExtension(transferType);
+
+        boolean transferEnabled = ConfigOptionDefine.isTransferEnabled(configOption);
         if (log.isDebugEnabled()) {
-            log.debug("transfer plugin : {},{}", transferType, this.transferDefine);
+            log.debug("transfer enabled: {}", transferEnabled);
+        }
+
+        if (transferEnabled) {
+            String transferType = ConfigOptionDefine.getTransferType(configOption);
+            this.transferDefine = transferDefineExtensions.getExtension(transferType);
+            if (log.isDebugEnabled()) {
+                log.debug("transfer plugin : {},{}", transferType, this.transferDefine);
+            }
         }
     }
 
