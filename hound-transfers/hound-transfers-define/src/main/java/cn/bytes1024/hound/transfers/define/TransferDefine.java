@@ -18,10 +18,10 @@ public interface TransferDefine {
     /**
      * 数据传输信息
      *
-     * @param configOption   :
-     * @param transmitObject :
+     * @param configOption    :
+     * @param transmitContent :
      * @return : void
      * @author 江浩
      */
-    void transmit(ConfigOption configOption, TransmitObject transmitObject);
+    <T extends AbstractTransmitContent> void transmit(ConfigOption configOption, T transmitContent);
 }
