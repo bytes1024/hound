@@ -1,6 +1,7 @@
 package cn.bytes1024.hound.transfers.define.buffer;
 
-import cn.bytes1024.hound.transfers.define.AbstractTransmitContent;
+
+import cn.bytes1024.hound.transfers.define.DefineTransmitContent;
 
 public interface NotifyListener {
     /**
@@ -10,5 +11,6 @@ public interface NotifyListener {
      * @return : void
      * @author 江浩
      */
-    <T extends AbstractTransmitContent> void notify(T message);
+    <T extends DefineTransmitContent> void notify(T message);
+
 }

@@ -4,8 +4,10 @@ import com.alibaba.fastjson.JSONObject;
 
 import java.io.Serializable;
 
-public abstract class AbstractTransmitContent implements Serializable {
+public class DefineTransmitContent implements Serializable {
 
+    public DefineTransmitContent() {
+    }
 
     public String encode() {
         return JSONObject.toJSONString(this);

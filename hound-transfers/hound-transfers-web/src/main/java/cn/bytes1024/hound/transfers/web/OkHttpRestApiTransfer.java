@@ -2,7 +2,7 @@ package cn.bytes1024.hound.transfers.web;
 
 import cn.bytes1024.hound.commons.option.ConfigOption;
 import cn.bytes1024.hound.commons.option.ConfigOptionDefine;
-import cn.bytes1024.hound.transfers.define.AbstractTransmitContent;
+import cn.bytes1024.hound.transfers.define.DefineTransmitContent;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 
@@ -26,10 +26,11 @@ public class OkHttpRestApiTransfer extends AbstractRestApiTransfer {
 
 
     @Override
-    public <T extends AbstractTransmitContent> void transmit(ConfigOption configOption, T transmitContent) {
+    public <T extends DefineTransmitContent> void transmit(ConfigOption configOption, T transmitContent) {
         RequestBody requestBody = RequestBody.create(mediaType, transmitContent.encode());
+
         String responseJson = this.postResponseJson(getRemoteAddress(configOption), requestBody);
-        System.out.println("数据提交：" + responseJson);
+        System.out.println("数据提交：" + transmitContent.encode() + "  " + responseJson);
     }
 
     public String getRemoteAddress(ConfigOption configOption) {

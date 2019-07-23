@@ -23,5 +23,5 @@ public interface TransferDefine {
      * @return : void
      * @author 江浩
      */
-    <T extends AbstractTransmitContent> void transmit(ConfigOption configOption, T transmitContent);
+    <T extends DefineTransmitContent> void transmit(ConfigOption configOption, T transmitContent);
 }

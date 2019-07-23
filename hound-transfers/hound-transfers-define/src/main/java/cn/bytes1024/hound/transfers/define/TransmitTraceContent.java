@@ -21,7 +21,7 @@ import java.util.Map;
 @AllArgsConstructor
 @NoArgsConstructor
 @Accessors(chain = true)
-public class TransmitTraceContent extends AbstractTransmitContent {
+public class TransmitTraceContent extends DefineTransmitContent {
 
     private String operationName;
 

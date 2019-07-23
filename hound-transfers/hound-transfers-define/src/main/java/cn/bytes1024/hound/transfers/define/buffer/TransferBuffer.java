@@ -1,6 +1,6 @@
 package cn.bytes1024.hound.transfers.define.buffer;
 
-import cn.bytes1024.hound.transfers.define.AbstractTransmitContent;
+import cn.bytes1024.hound.transfers.define.DefineTransmitContent;
 
 import java.util.List;
 
@@ -24,7 +24,7 @@ public interface TransferBuffer {
      * @return : void
      * @author 江浩
      */
-    <T extends AbstractTransmitContent> void push(T transmitContent);
+    <T extends DefineTransmitContent> void push(T transmitContent);
 
 
     /**

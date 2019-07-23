@@ -19,6 +19,9 @@ public class ConfigOptionDefine {
 
     public static final String TRANSFER_WEB_ADDRESS = PREFIX + "transfer.web.address";
 
+
+    public static final String BUFFER_MAX = PREFIX + "transfer.batch.max";
+
     public static String getAgentId(ConfigOption configOption) {
         return configOption.getOption(AGENT_ID, null);
     }
@@ -76,5 +79,8 @@ public class ConfigOptionDefine {
         return configOption.getOption(TRANSFER_WEB_ADDRESS, null);
     }
 
-
+    public static int getBufferMaxNumber(ConfigOption configOption) {
+        String number = configOption.getOption(BUFFER_MAX, String.valueOf(Short.MAX_VALUE));
+        return Integer.valueOf(number);
+    }
 }

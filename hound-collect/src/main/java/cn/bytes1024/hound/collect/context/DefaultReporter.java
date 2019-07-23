@@ -2,7 +2,7 @@ package cn.bytes1024.hound.collect.context;
 
 import cn.bytes1024.hound.commons.option.ConfigOption;
 import cn.bytes1024.hound.commons.option.ConfigOptionDefine;
-import cn.bytes1024.hound.transfers.define.AbstractTransmitContent;
+import cn.bytes1024.hound.transfers.define.DefineTransmitContent;
 import cn.bytes1024.hound.transfers.define.TransferDefine;
 import cn.bytes1024.hound.transfers.define.TransmitTraceContent;
 import cn.bytes1024.hound.transfers.define.buffer.NotifyListener;
@@ -16,6 +16,9 @@ import java.util.Objects;
 
 /**
  * 默认的上报器
+ * <p>
+ * 1.上报器目前结合 {@link TransferBuffer} {@link NotifyListener} 使用
+ * </p>
  *
  * @author 江浩
  */
@@ -33,6 +36,7 @@ public class DefaultReporter implements Reporter, NotifyListener {
         this.transferBuffer = transferBuffer;
         this.configOption = configOption;
         if (Objects.nonNull(this.transferBuffer)) {
+            log.info("缓冲器启动....");
             this.transferBuffer.register(this);
         }
     }
@@ -76,7 +80,7 @@ public class DefaultReporter implements Reporter, NotifyListener {
     }
 
     @Override
-    public <T extends AbstractTransmitContent> void notify(T message) {
+    public <T extends DefineTransmitContent> void notify(T message) {
         if (!Objects.isNull(transferDefine)) {
             this.transferDefine.transmit(configOption, message);
         }
