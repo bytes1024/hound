@@ -30,6 +30,13 @@
 
         <dependency>
             <groupId>cn.bytes1024.hound</groupId>
+            <artifactId>hound-plugins-httpclient</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>cn.bytes1024.hound</groupId>
             <artifactId>hound-plugins-okhttp</artifactId>
             <version>${project.version}</version>
         </dependency>

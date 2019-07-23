@@ -12,6 +12,7 @@ import cn.bytes1024.hound.commons.option.ConfigOption;
 import cn.bytes1024.hound.plugins.define.TraceContext;
 import cn.bytes1024.hound.plugins.define.filter.DefaultTraceContextFilterOption;
 import cn.bytes1024.hound.plugins.define.filter.TraceContextFilterOption;
+import cn.bytes1024.hound.transfers.define.buffer.TransferBuffer;
 import com.alipay.common.tracer.core.SofaTracer;
 import com.alipay.common.tracer.core.reporter.facade.Reporter;
 import com.google.inject.AbstractModule;
@@ -46,6 +47,8 @@ public class DefineModule extends AbstractModule {
                 .to(MetricsCollectProcessor.class).in(Scopes.SINGLETON);
 
         bind(Reporter.class).toProvider(ServerReporterProvider.class).in(Scopes.SINGLETON);
+
+        bind(TransferBuffer.class).toProvider(TransferBufferProvider.class).in(Scopes.SINGLETON);
         bind(SofaTracer.class).toProvider(SofaTracerProvider.class).in(Scopes.SINGLETON);
 
         bind(TraceContextFilterOption.class).to(DefaultTraceContextFilterOption.class).in(Scopes.SINGLETON);

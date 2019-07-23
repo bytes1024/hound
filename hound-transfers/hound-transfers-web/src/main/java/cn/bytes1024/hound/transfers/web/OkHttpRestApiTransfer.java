@@ -1,8 +1,8 @@
 package cn.bytes1024.hound.transfers.web;
 
 import cn.bytes1024.hound.commons.option.ConfigOption;
-import cn.bytes1024.hound.transfers.define.TransmitObject;
-import com.alibaba.fastjson.JSONObject;
+import cn.bytes1024.hound.commons.option.ConfigOptionDefine;
+import cn.bytes1024.hound.transfers.define.DefineTransmitContent;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 
@@ -24,26 +24,18 @@ public class OkHttpRestApiTransfer extends AbstractRestApiTransfer {
 
     private MediaType mediaType = MediaType.parse("application/json");
 
+
     @Override
-    public void transmit(ConfigOption configOption, TransmitObject transmitObject) {
+    public <T extends DefineTransmitContent> void transmit(ConfigOption configOption, T transmitContent) {
+        RequestBody requestBody = RequestBody.create(mediaType, transmitContent.encode());
 
-        //bytes.hound.transfer.web.address
-        //bytes.hound.transfer.web.batch.max
-        // TODO: 2019/7/8 缓冲数据设置
-        RequestBody requestBody = RequestBody.create(mediaType, JSONObject.toJSONString(transmitObject));
         String responseJson = this.postResponseJson(getRemoteAddress(configOption), requestBody);
-        System.out.println("数据提交：" + responseJson);
+        System.out.println("数据提交：" + transmitContent.encode() + "  " + responseJson);
     }
-
 
     public String getRemoteAddress(ConfigOption configOption) {
-        return Objects.isNull(configOption) ? null : configOption.getOption("bytes.hound.transfer.web.address", null);
+        return Objects.isNull(configOption) ? null : ConfigOptionDefine.getTransferWebAddress(configOption);
     }
-
-    public Integer getBatchMax(ConfigOption configOption) {
-        return Objects.isNull(configOption) ? null : Integer.valueOf(configOption.getOption("bytes.hound.transfer.web.batch.max", "-1"));
-    }
-
 
     public String postResponseJson(String url, RequestBody requestBody) {
         Request request = new Request.Builder()

@@ -23,16 +23,26 @@ mvn clean package -Dmaven.test.skip=true
 ##### 配置参数
 `-javaagent:agent.jar=agent.properties`
 
-key|value|支持|描述
-|---|---|---|---|
-|bytes.hound.agent.id|xxx|Y|id标识，后期接入ID校验使用
-|bytes.hound.agent.secret|xx|T|秘钥
-|bytes.hound.transfer.enabled|true或false|T|远程传输<影响transfer其他配置>
-|bytes.hound.transfer.content.show.enabled|true或false|T|是否打印传输内容
-|bytes.hound.transfer.type|web|T-|支持的传输类型
-|bytes.hound.transfer.web.address|http://127.0.0.1:9999/v1/transfer/receive|T|web传输服务地址
-|bytes.hound.transfer.web.batch.max|<0 或 >0|Y|批量传输<=0实时传输
-|bytes.hound.transfer.web.batch.size|1M|Y|堆积数据大小
+```
+#增强代码输出目录
+# agent.plugin.debug.path="E:\\" 
+
+##########################################################################
+###探针编号
+###
+bytes.hound.agent.id=agent1
+###是否开启远程传输
+bytes.hound.transfer.enabled=true
+###是否开启传输内容打印
+bytes.hound.transfer.content.show.enabled=true
+###传输类型
+bytes.hound.transfer.type=web
+###服务地址
+bytes.hound.transfer.web.address=http://127.0.0.1:8888/v1/transfer/receive
+
+###########################################################################
+
+```
 
 ##### 功能
 ##### [任务列表](https://github.com/bytes1024/hound/wiki/%E5%BC%80%E5%8F%91%E4%BB%BB%E5%8A%A1%E5%88%97%E8%A1%A8)

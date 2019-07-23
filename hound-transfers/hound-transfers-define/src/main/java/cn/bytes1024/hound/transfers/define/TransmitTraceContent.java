@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
-import java.io.Serializable;
 import java.util.Map;
 
 /**
@@ -22,7 +21,7 @@ import java.util.Map;
 @AllArgsConstructor
 @NoArgsConstructor
 @Accessors(chain = true)
-public class TransmitObject implements Serializable {
+public class TransmitTraceContent extends DefineTransmitContent {
 
     private String operationName;
 
