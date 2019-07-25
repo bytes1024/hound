@@ -65,6 +65,13 @@
             <version>${project.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>cn.bytes1024.hound</groupId>
+            <artifactId>hound-plugins-mybatis</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+
     </dependencies>
 
 </project>

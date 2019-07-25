@@ -3,7 +3,7 @@ package cn.bytes1024.hound.plugins.gson;
 import cn.bytes1024.hound.plugins.define.AbstractPluginDefine;
 import cn.bytes1024.hound.plugins.gson.intercepotr.GsonMethodInterceptor;
 
-import static net.bytebuddy.matcher.ElementMatchers.named;
+import static net.bytebuddy.matcher.ElementMatchers.*;
 
 /**
  * gson插件
@@ -32,7 +32,11 @@ public class GsonPlugin extends AbstractPluginDefine {
                 .pointClass(named("com.google.gson.Gson"))
                 .pointMethod(
                         named("toJson")
-                                .or(named("fromJson"))
+                                .and(takesArguments(1))
+                                .or(named("fromJson")
+                                        .and(takesArgument(0, String.class))
+                                        .and(takesArgument(1, Class.class))
+                                )
                         , GsonMethodInterceptor.class);
     }
 }

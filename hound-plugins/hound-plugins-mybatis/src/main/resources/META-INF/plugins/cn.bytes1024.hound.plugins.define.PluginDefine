@@ -1,0 +1,2 @@
+plugin-mybatis=cn.bytes1024.hound.plugins.mybatis.MybatisPlugin
+#plugin-mybatis-annotation=cn.bytes1024.hound.plugins.mybatis.MybatisAnnotationMethodPlugin

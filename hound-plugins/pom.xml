@@ -24,6 +24,7 @@
         <module>hound-plugins-fastjson</module>
         <module>hound-plugins-gson</module>
         <module>hound-plugins-druid</module>
+        <module>hound-plugins-mybatis</module>
     </modules>
 
 
