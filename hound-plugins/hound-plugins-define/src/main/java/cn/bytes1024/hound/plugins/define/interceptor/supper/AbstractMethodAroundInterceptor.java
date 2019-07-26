@@ -4,6 +4,7 @@ import cn.bytes1024.hound.plugins.define.InterceptContext;
 import cn.bytes1024.hound.plugins.define.TraceContext;
 import cn.bytes1024.hound.plugins.define.interceptor.InterceptorPluginAware;
 import cn.bytes1024.hound.plugins.define.interceptor.MethodAroundInterceptor;
+import com.alipay.common.tracer.core.context.span.SofaTracerSpanContext;
 import com.alipay.common.tracer.core.span.SofaTracerSpan;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
@@ -72,7 +73,8 @@ public abstract class AbstractMethodAroundInterceptor implements MethodAroundInt
                 .withTag(SPAN_KIND.getKey(), SPAN_KIND_SERVER)
                 .asChildOf(preSofaTracerSpan)
                 .start();
-
+        SofaTracerSpanContext sofaTracerSpanContext = thatSofaTracerSpan.getSofaTracerSpanContext();
+        sofaTracerSpanContext.addBizBaggage(interceptContext.getProps());
         getTraceContext().push(thatSofaTracerSpan);
         return thatSofaTracerSpan;
     }
