@@ -4,7 +4,7 @@ import cn.bytes1024.hound.plugins.define.AbstractPluginDefine;
 import cn.bytes1024.hound.plugins.druid.interceptor.DruidPluginInterceptor;
 
 import static net.bytebuddy.matcher.ElementMatchers.named;
-import static net.bytebuddy.matcher.ElementMatchers.takesArgument;
+import static net.bytebuddy.matcher.ElementMatchers.takesArguments;
 
 /**
  * druid 数据源
@@ -17,9 +17,9 @@ public class DruidDataSourcePlugin extends AbstractPluginDefine {
         defineBuilder.pointName("plugin-druid-dataSource")
                 .pointClass(named("com.alibaba.druid.pool.DruidDataSource"))
                 .pointMethod(named("close")
-                                .or(named("getConnection")
-                                        .and(takesArgument(0, String.class))
-                                        .and(takesArgument(1, String.class)))
+                                .or(named("getPooledConnection")
+                                        .or(named("getConnection").and(takesArguments(1)))
+                                )
                         , DruidPluginInterceptor.class);
     }
 }

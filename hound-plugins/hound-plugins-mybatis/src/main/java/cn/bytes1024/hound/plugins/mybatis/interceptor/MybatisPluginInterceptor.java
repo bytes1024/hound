@@ -1,5 +1,6 @@
 package cn.bytes1024.hound.plugins.mybatis.interceptor;
 
+import cn.bytes1024.hound.plugins.define.InterceptContext;
 import cn.bytes1024.hound.plugins.define.TraceContext;
 import cn.bytes1024.hound.plugins.define.interceptor.supper.AbstractMethodAroundInterceptor;
 
@@ -14,4 +15,12 @@ public class MybatisPluginInterceptor extends AbstractMethodAroundInterceptor {
         super(traceContext);
     }
 
+
+    @Override
+    public void before(InterceptContext interceptContext) {
+//
+//        Object[] args = interceptContext.getArgs();
+//        System.out.println(args[0]);
+        super.before(interceptContext);
+    }
 }

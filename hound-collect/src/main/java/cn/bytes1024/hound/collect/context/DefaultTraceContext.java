@@ -57,6 +57,7 @@ public class DefaultTraceContext extends SofaTracerThreadLocalTraceContext imple
 
         this.filterOption(sofaTracerSpanContext, interceptContext);
 
+        sofaTracerSpanContext.addBizBaggage(interceptContext.getProps());
         sofaTracerSpan.finish();
 
         return sofaTracerSpan;

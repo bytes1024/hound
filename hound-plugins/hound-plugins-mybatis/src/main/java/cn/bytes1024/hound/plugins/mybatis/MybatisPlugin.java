@@ -4,6 +4,7 @@ import cn.bytes1024.hound.plugins.define.AbstractPluginDefine;
 import cn.bytes1024.hound.plugins.mybatis.interceptor.MybatisPluginInterceptor;
 
 import static net.bytebuddy.matcher.ElementMatchers.named;
+import static net.bytebuddy.matcher.ElementMatchers.takesArguments;
 
 /**
  * mybatis 插件
@@ -15,13 +16,20 @@ public class MybatisPlugin extends AbstractPluginDefine {
     public void init(PluginDefineBuilder defineBuilder) {
 
         defineBuilder.pointName("plugin-mybatis")
-                .pointClass(named("org.apache.ibatis.session.DefaultSqlSession"))
+                .pointClass(named("org.apache.ibatis.session.defaults.DefaultSqlSession")
+                        .or(named("org.mybatis.spring.SqlSessionTemplate")
+                        )
+                )
                 .pointMethod(
-                        named("select")
-                                .or(named("update"))
+                        named("selectOne").and(takesArguments(2))
+                                .or(named("selectList").and(takesArguments(3)))
+                                .or(named("selectMap").and(takesArguments(4)))
+                                .or(named("select").and(takesArguments(3)))
                                 .or(named("insert"))
-                                .or(named("delete")), MybatisPluginInterceptor.class);
-
+                                .or(named("update"))
+                                .or(named("delete")
+                                )
+                        , MybatisPluginInterceptor.class);
 
     }
 }

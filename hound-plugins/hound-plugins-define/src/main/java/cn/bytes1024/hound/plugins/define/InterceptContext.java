@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 拦截上下文信息
@@ -36,5 +38,6 @@ public class InterceptContext implements Serializable {
 
     private Throwable throwable;
 
+    private Map<String, String> props = new HashMap<>();
 
 }
