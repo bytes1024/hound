@@ -59,7 +59,7 @@ bytes.hound.transfer.web.address=http://127.0.0.1:8888/v1/transfer/receive
 |fastjson|1.2.49|粗
 |jackson|TODO
 |hystrix|TODO
-|mybatis|TODO
+|mybatis|3.5.2|粗
 |hibernate(jpa)|TODO
 |mysql-jdbc|TODO
 |redis-lettuce|TODO
