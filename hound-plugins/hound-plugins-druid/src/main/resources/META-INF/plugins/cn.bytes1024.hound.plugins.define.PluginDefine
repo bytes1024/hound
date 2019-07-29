@@ -1,3 +1,0 @@
-plugin-druid-pooledConnection = cn.bytes1024.hound.plugins.druid.DruidPooledConnectionPlugin
-
-plugin-druid-dataSource = cn.bytes1024.hound.plugins.druid.DruidDataSourcePlugin

@@ -1,5 +1,0 @@
-plugin-springBean = cn.bytes1024.hound.plugins.spring.SpringBeanPlugin
-
-plugin-springExecutor = cn.bytes1024.hound.plugins.spring.SpringExecutorExecutorsPlugin
-
-plugin-springWebMvc = cn.bytes1024.hound.plugins.spring.SpringWebMvcPlugin

@@ -1,3 +1,0 @@
-plugin-okHttp-client = cn.bytes1024.hound.plugins.okhttp.OkHttpClientPlugin
-
-plugin-okHttp-realCall = cn.bytes1024.hound.plugins.okhttp.OkHttpRealCallPlugin
