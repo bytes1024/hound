@@ -23,7 +23,6 @@ mvn clean package -Dmaven.test.skip=true
 
 ##### 配置参数
 `-javaagent:collect.jar=collect.properties`
-
 ```
 #增强代码输出目录
 # agent.plugin.debug.path="E:\\" 
