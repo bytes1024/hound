@@ -4,6 +4,7 @@
 * 本地编译
 ```
 mvn clean package -Dmaven.test.skip=true
+
 //在 hound-collect 目录下面生成对应的jar文件
 //项目启动后面添加参数 -javaagent:xxx\hound-agent.jar
 //config 配置目前用处不大
@@ -21,7 +22,7 @@ mvn clean package -Dmaven.test.skip=true
 ![jgt](https://github.com/bytes1024/files/blob/master/hound/images/jgt.png)
 
 ##### 配置参数
-`-javaagent:agent.jar=agent.properties`
+`-javaagent:collect.jar=collect.properties`
 
 ```
 #增强代码输出目录

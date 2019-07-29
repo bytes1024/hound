@@ -10,13 +10,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <modules>
-        <module>hound-bom</module>
-        <module>hound-collect</module>
-        <module>hound-loader</module>
-        <module>hound-plugins</module>
-        <module>hound-transfers</module>
-        <module>hound-commons</module>
-        <module>hound-server</module>
+        <module>bom</module>
+        <module>collect</module>
+        <module>loader</module>
+        <module>plugins</module>
+        <module>transfers</module>
+        <module>commons</module>
+        <module>server</module>
     </modules>
 
     <properties>
@@ -31,7 +31,7 @@
 
             <dependency>
                 <groupId>cn.bytes1024.hound</groupId>
-                <artifactId>hound-bom</artifactId>
+                <artifactId>bom</artifactId>
                 <version>1.0.0.BUILD</version>
                 <type>pom</type>
                 <scope>import</scope>
