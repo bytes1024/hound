@@ -32,6 +32,7 @@ public class EnhanceSourceRule extends AbstractEnhanceRule<Object> {
         }
 
         //EnhanceDefine handler param of TraceIdRecorder
+        //添加字段，实现接口
         return builder.defineField(ENHANCE_CLASS_FIELD_NAME, SofaTracerSpan.class, ACC_PRIVATE | ACC_VOLATILE)
                 .implement(EnhancedDefine.class)
                 .intercept(FieldAccessor.ofField(ENHANCE_CLASS_FIELD_NAME));
