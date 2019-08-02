@@ -6,7 +6,7 @@
 mvn clean package -Dmaven.test.skip=true
 
 //在 hound-collect 目录下面生成对应的jar文件
-//项目启动后面添加参数 -javaagent:xxx\hound-agent.jar
+//项目启动后面添加参数 -javaagent:xxx\collect.jar
 //config 配置目前用处不大
 
 ```
