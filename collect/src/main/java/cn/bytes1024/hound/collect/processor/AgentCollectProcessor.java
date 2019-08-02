@@ -58,12 +58,22 @@ public class AgentCollectProcessor extends AbstractProcessor {
     @Override
     public void start(ConfigOption configOption) {
 
+        //是否独立启动
+
+        if (!ConfigOptionDefine.isEnabledAgent(configOption)) {
+            if (log.isDebugEnabled()) {
+                log.debug("processor [{}] enabled = {} ", this.getClass().getSimpleName(), "false");
+            }
+            return;
+        }
+
         if (processorStatusReference.get().equals(ProcessorStatus.RUN)) {
             log.debug("processor [{}] is runing ", this.getClass().getSimpleName());
             return;
         }
 
-        String agentId = configOption.getOption(ConfigOptionDefine.AGENT_ID, null);
+        //String agentId = configOption.getOption(ConfigOptionDefine.AGENT_ID, null);
+        String agentId = ConfigOptionDefine.getAgentId(configOption);
         log.info("collect agent : {} starting", agentId);
         List<PluginDefine> plugins = extensionLoader.getSupportedVExtensions();
         log.info("loading plugins {}...", plugins.size());

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>bytes-hound</artifactId>
+        <groupId>cn.bytes1024.hound</groupId>
+        <version>1.0.1-SNAPSHOT</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>plugins</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>plugins-define</module>
+        <module>plugins-tomcat</module>
+        <module>plugins-bom</module>
+        <module>plugins-webflux</module>
+        <module>plugins-okhttp</module>
+        <module>plugins-spring</module>
+        <module>plugins-httpclient</module>
+        <module>plugins-fastjson</module>
+        <module>plugins-gson</module>
+        <module>plugins-druid</module>
+        <module>plugins-mybatis</module>
+        <module>plugins-mysql-jdbc</module>
+    </modules>
+
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <deploy.skip>false</deploy.skip>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>cn.bytes1024.hound</groupId>
+                <artifactId>plugins-define</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.bytes1024.hound</groupId>
+                <artifactId>commons</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+</project>

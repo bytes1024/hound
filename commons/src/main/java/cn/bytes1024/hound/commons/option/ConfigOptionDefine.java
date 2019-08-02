@@ -7,20 +7,23 @@ public class ConfigOptionDefine {
 
     private static final String PREFIX = "bytes.hound.";
 
-    public static final String AGENT_ID = PREFIX + "agent.id";
 
-    public static final String TRACER_TYPE = PREFIX + "tracer.type";
+    private static final String AGENT_ENABLED = PREFIX + "agent.enabled";
 
-    public static final String TRANSFER_ENABLED = PREFIX + "transfer.enabled";
+    private static final String AGENT_ID = PREFIX + "agent.id";
 
-    public static final String TRANSFER_CONTENT_VIEW_ENABLED = PREFIX + "transfer.content.show.enabled";
+    private static final String TRACER_TYPE = PREFIX + "tracer.type";
 
-    public static final String TRANSFER_TYPE = PREFIX + "transfer.type";
+    private static final String TRANSFER_ENABLED = PREFIX + "transfer.enabled";
 
-    public static final String TRANSFER_WEB_ADDRESS = PREFIX + "transfer.web.address";
+    private static final String TRANSFER_CONTENT_VIEW_ENABLED = PREFIX + "transfer.content.show.enabled";
 
+    private static final String TRANSFER_TYPE = PREFIX + "transfer.type";
 
-    public static final String BUFFER_MAX = PREFIX + "transfer.batch.max";
+    private static final String TRANSFER_WEB_ADDRESS = PREFIX + "transfer.web.address";
+
+    private static final String BUFFER_MAX = PREFIX + "transfer.batch.max";
+
 
     public static String getAgentId(ConfigOption configOption) {
         return configOption.getOption(AGENT_ID, null);
@@ -53,7 +56,7 @@ public class ConfigOptionDefine {
     public static boolean isTransferEnabled(ConfigOption configOption) {
         String bool = configOption.getOption(TRANSFER_ENABLED, "false");
         try {
-            return Boolean.valueOf(bool);
+            return Boolean.parseBoolean(bool);
         } catch (Exception e) {
             if (log.isDebugEnabled()) {
                 log.debug("transfer.enabled error:{}", bool);
@@ -66,7 +69,7 @@ public class ConfigOptionDefine {
     public static boolean isOpenTransmitContentView(ConfigOption configOption) {
         String bool = configOption.getOption(TRANSFER_CONTENT_VIEW_ENABLED, "false");
         try {
-            return Boolean.valueOf(bool);
+            return Boolean.parseBoolean(bool);
         } catch (Exception e) {
             if (log.isDebugEnabled()) {
                 log.debug("transfer.enabled error:{}", bool);
@@ -79,8 +82,22 @@ public class ConfigOptionDefine {
         return configOption.getOption(TRANSFER_WEB_ADDRESS, null);
     }
 
+
+    public static boolean isEnabledAgent(ConfigOption configOption) {
+        String bool = configOption.getOption(AGENT_ENABLED, "true");
+        try {
+            return Boolean.parseBoolean(bool);
+        } catch (Exception e) {
+            if (log.isDebugEnabled()) {
+                log.debug("transfer.enabled error:{}", bool);
+            }
+            return false;
+        }
+    }
+
+
     public static int getBufferMaxNumber(ConfigOption configOption) {
         String number = configOption.getOption(BUFFER_MAX, String.valueOf(Short.MAX_VALUE));
-        return Integer.valueOf(number);
+        return Integer.parseInt(number);
     }
 }

@@ -1,0 +1,5 @@
+# plugin-mysql-jdbc-preparedStatement = cn.bytes1024.hound.plugins.mysql.jdbc.MysqlJdbcPreparedStatementPlugin
+
+# plugin-mysql-jdbc-preparedCall = cn.bytes1024.hound.plugins.mysql.jdbc.MysqlJdbcPreparedCallPlugin
+
+plugin-mysql = cn.bytes1024.hound.plugins.mysql.jdbc.MysqlJdbcPlugin
