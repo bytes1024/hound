@@ -6,6 +6,7 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Stage;
 import com.google.inject.util.Modules;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
 import java.lang.instrument.Instrumentation;
@@ -21,6 +22,7 @@ import static com.google.inject.name.Names.named;
  *
  * @author 江浩
  */
+@Slf4j
 public class CollectModuleFactory implements ModuleFactory {
 
     private Set<com.google.inject.Module> refModules = new HashSet<>();
@@ -41,6 +43,7 @@ public class CollectModuleFactory implements ModuleFactory {
 
         defineModule(args, instrumentation);
 
+        log.debug("init module length: {}", refModules.size());
         this.injector = Guice.createInjector(Stage.PRODUCTION, Modules.combine(refModules));
 
         this.injector.getInstance(ApplicationContext.class).start();
