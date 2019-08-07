@@ -1,7 +1,10 @@
 package cn.bytes1024.hound.collect.module;
 
 import cn.bytes1024.hound.collect.context.ApplicationContext;
-import com.google.inject.*;
+import com.google.inject.AbstractModule;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+import com.google.inject.Stage;
 import com.google.inject.util.Modules;
 import org.apache.commons.lang3.StringUtils;
 
@@ -20,12 +23,12 @@ import static com.google.inject.name.Names.named;
  */
 public class CollectModuleFactory implements ModuleFactory {
 
-    private Set<Module> refModules = new HashSet<>();
+    private Set<com.google.inject.Module> refModules = new HashSet<>();
 
     private Injector injector;
 
     @Override
-    public ModuleFactory add(Module... modules) {
+    public ModuleFactory add(com.google.inject.Module... modules) {
         if (Objects.isNull(modules)) {
             return this;
         }
@@ -51,7 +54,7 @@ public class CollectModuleFactory implements ModuleFactory {
      */
     private void defineModule(String args, Instrumentation instrumentation) {
 
-        Module module = new AbstractModule() {
+        com.google.inject.Module module = new AbstractModule() {
             @Override
             protected void configure() {
                 bind(Instrumentation.class).toInstance(instrumentation);
