@@ -21,7 +21,7 @@
     <properties>
         <bytebuddy.version>1.9.12</bytebuddy.version>
         <lombok.version>1.16.22</lombok.version>
-        <log4j.api.version>2.11.1</log4j.api.version>
+        <log4j.api.version>2.15.0</log4j.api.version>
         <logback.classic.version>1.2.3</logback.classic.version>
         <guava.version>27.1-jre</guava.version>
         <commons.version>3.9</commons.version>
