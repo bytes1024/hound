@@ -11,7 +11,7 @@
 
     <artifactId>plugins-spring</artifactId>
     <properties>
-        <spring-core.version>5.0.0.RELEASE</spring-core.version>
+        <spring-core.version>5.2.22.RELEASE</spring-core.version>
         <spring-webmvc.version>5.0.0.RELEASE</spring-webmvc.version>
         <spring-webflux.version>5.0.0.RELEASE</spring-webflux.version>
         <javax-servlet-api.version>3.0.1</javax-servlet-api.version>
